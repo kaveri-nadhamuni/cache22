@@ -379,9 +379,13 @@
   <div class="container" data-aos="fade-up" >
     <div class="text-center" >
         <br> <br>
-        <div class="row" data-aos="zoom-in"><h2>Username</h2> </div> </div><br> <br><br><br>
+        <div class="row" data-aos="zoom-in " id = "name-container">
+          <!-- Add Username here--> </div> 
+        </div><br> <br><br><br>
       
-  <div class="row col-sm-10"> A short bio over here</div>
+  <div class="row col-sm-10" id = "bio-container"> 
+    <!--A short bio over here-->
+    </div>
   <div class="row col-sm-2"><span style="font-size:72px"> <i class="glyphicon glyphicon-pencil gly-spin"></i> 
 </span></div> <br><br> </div> <br><br><br>
 
@@ -398,12 +402,16 @@ data-aos="zoom-in-up">
 <div class="conatiner">
     <br> <br>
     <div data-aos="fade-up"><h2>Your Writing</h2></div><br>
-    <div data-aos="fade-up"><h4 class="text-center">"Todays prompt - example a Hogwarts professor discusses theory of relativity with a dimunitive barmaid at 
-      three broomsticks" </h4></div>
+    <h4 class="text-center">
+      <div data-aos="fade-up" id= "prompt-container">
+        API generated prompt text here <!-- add API generated daily prompt-->
+      </div>
+    </h4>
   <br> <br> <br> <br>
   <div data-aos="fade-up">
-  <textarea class="form-control" id="comments" name="comments" placeholder="Your Story" rows="10" cols="50" style="font-size:24px">
-  </textarea> </div><br><br>
+  <div  id="user-story-container">
+    <!--user story from database inserted here-->
+  </div> </div><br><br>
   <div data-aos="fade-up">
   
       <button id="btnShow1">View Previous</button>
@@ -426,8 +434,11 @@ data-aos="zoom-in-up">
   <h2>Your Drafts</h2><br><br></div>
   
   <div data-aos="fade-up">
-        <textarea class="form-control" id="comments" name="comments" placeholder="Your Story" rows="10" cols="50" style="font-size:24px">
-        </textarea> </div><br><br>
+        <div  id="user-draft-container"> 
+          <!--user drafts inserted here-->
+        </div>
+
+        </div> </div><br><br>
         <div data-aos="fade-up">
         
             <button id="btnShow1">View Previous</button>
