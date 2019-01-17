@@ -5,7 +5,6 @@
   <title>Bootstrap Theme Company Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="google-signin-client_id" content="830480139203-8orn4ab6l41q03u8mugt8n6erpttl7oj.apps.googleusercontent.com">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   
   <link rel="stylesheet"
@@ -20,7 +19,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <style>
 
 #alert1{
@@ -163,7 +161,7 @@
 }
 
   body {
-    background-image:url('images/bg3.jpeg');
+    background-image:url('images/bg4.jpeg');
     background-attachment:fixed;
     font-family: 'Satisfy', cursive;
     font-size:24px;
@@ -192,7 +190,7 @@
     margin-bottom: 30px;
   }  
   .jumbotron {
-    background-color: rgb(122, 202, 248);
+    background-color: rgb(239, 225, 255);
     color:rgb(7, 0, 39);
     opacity:0.6;
     padding: 100px 25px;
@@ -224,7 +222,14 @@
   .item span {
     font-style: normal;
   }
-  
+  .dropdown{
+ background-color: rgb(123, 198, 233);
+ font-size: 18px !important;
+}
+.dropdown-menu{
+  background-color: rgb(123, 198, 233);
+  font-size: 18px !important;
+}
   .navbar {
     font-family: 'Satisfy',cursive;
     opacity: 0.95;  
@@ -300,44 +305,29 @@
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-  <!-- Small modal -->
-  <div class="modal" id="registerModal" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" style="width:400px;">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="font-size:48px">×</span></button>
-            <h4>Log In <i class="fa fa-unlock"></i></h4>
-          </div> 
-          <div class="modal-body"> 
-            <form>
-            <p> Username <input type="text" style="width:370px" required>  <br></p> 
-            <p> Email address <input type="email" style="width:370px" required> <br></p>
-            <p> Password <input type="password" style="width:370px" required><br></p> 
-            <p> Introduction (optional) <textarea cols="42"></textarea></p>
-            <input type="submit" value="Register with Google" style="width:370px">
-            </form> </div>
+
+    <!-- Small modal -->
+<div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+              <h4>Log Out <i class="fa fa-lock"></i></h4>
+            </div>
+            <div class="modal-body">
+              <p><i class="fa fa-question-circle"></i> Are you sure you want to log-out? <br /></p>
+              <div class="actionsBtns">
+                  <form action="/logout" method="post">
+                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                      <button onclick="location.href='index.html'" type="button" class="btn btn-default">
+                        Logout</button>
+                          <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-
-  <!-- Small modal -->
-<div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" style="width:400px;">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="font-size:48px">×</span></button>
-          <h4>Log In <i class="fa fa-unlock"></i></h4>
-        </div> 
-        <div class="modal-body"> 
-          <form>
-          <p> Email address <input type="email" style="width:370px" required>  <br></p>
-          <p> Password <input type="password" style="width:370px" required><br></p> <br>
-          <input type="submit" value="Sign In with Google" style="width:370px"> <br> <br>
-          <input type="submit" value="New user? Register" style="width:370px">
-          </form> </div>
-      </div>
-    </div>
-  </div>
 
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
@@ -351,12 +341,14 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#about" >About </a></li>
-        <li><a href="#services" >Prompt <img src="images/locked.png"></a></li>
-        <li><a href="#portfolio">Hall Of Fame</a></li>
-        <li><a href="#contact">Contact Us</a></li>
-        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </li>
-        <li><a href="index.html" data-toggle="modal" data-target="#registerModal">login</a></li>
+        <li><a href="indexlogsub.html">Home</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">username
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Profile</a></li>
+              <li><a href="index.html" data-toggle="modal" data-target="#logoutModal">logout</a></li>
+          </ul>
       </ul>
     </div>
   </div>
@@ -372,177 +364,29 @@
 
 <br><br><br><br>
 
-<!-- Container (About Section) -->
-<div id="about" class="container-fluid" style="background-color:rgb(182, 171, 230);opacity:0.8" data-aos="zoom-in-up">
-  <div class="container" data-aos="fade-up" >
-    <div class="text-center" >
-        <br> <br> <br>
-        <div class="row" data-aos="zoom-in"><h2>How to use</h2> </div><br> <br>
-      <h3 style="text-align:center;">
-          <div class="row" data-aos="zoom-in"><i class="fas fa-pencil-alt" data-fa-transform="grow-6"></i>First step <br> <br></div>
-            <div class="row" data-aos="zoom-in"><i class="fas fa-pencil-alt" data-fa-transform="grow-6"></i> Second step <br> <br></div>
-            <div class="row" data-aos="zoom-in"><i class="fas fa-pencil-alt"data-fa-transform="grow-6"></i>Third step <br> <br></h3>
-      </div>
-
-    <br> <br>  
-    </div>
-
-  <div class="downArrow bounce text-center">
-      <a href="#services"><i class="fa fa-angle-down fa-2x " aria-hidden="true"></i></a></div>
-</div>
-
-
-<br> <br><br><br>
 
 <!-- Container (Services Section) -->
-<div id="services" class="container-fluid text-center" style="background-color:rgb(252, 189, 189);opacity:0.8;"
+<div id="services" class="container-fluid text-center" style="background-color:rgb(235, 229, 144);opacity:0.8;"
 data-aos="zoom-in-up">
 <div class="conatiner">
     <br> <br>
     <div data-aos="fade-up"><h2>Prompt</h2></div><br>
     <div data-aos="fade-up"><h4 class="text-center">"Todays prompt - example a Hogwarts professor discusses theory of relativity with a dimunitive barmaid at 
       three broomsticks" </h4></div>
-      <br> <br> <br> <br>
-      <button id="demo" class="btn-default" style="border-radius:25px"></button> <br><br><br>
+  <br> <br> <br> <br>
   <div data-aos="fade-up">
   <textarea class="form-control" id="comments" name="comments" placeholder="Your Story" rows="10" cols="50" style="font-size:24px">
   </textarea> </div><br><br>
-  <div data-aos="fade-up"></div>
+  <div data-aos="fade-up">
   
-      <button id="btnShow1">Submit</button>
-        <div id="alert1" class="alert alert-danger alert-dismissable">
-            <button type="submit" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            You have to login first
-        </div>
-        <button id="btnShow2">Save To Drafts</button>
-        <div id="alert2" class="alert alert-danger alert-dismissable">
-            <button type="submit" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            You have to login first
-        </div>
-  <br> <br> <br> <br>
-  
-
-<div class="downArrow bounce text-center">
-    <a href="#contact"><i class="fa fa-angle-down fa-2x" aria-hidden="true" ></i></a></div>
-</div></div>
-
-<br> <br><br><br> 
-
-<!-- Container (Portfolio Section) -->
-<div id="portfolio" class="container-fluid text-center" style="background-color:rgb(90, 177, 177);opacity:0.8;"
-data-aos="zoom-in-up">
-    <div data-aos="fade-up">
-  <br> 
-  <h2>Hall of Fame</h2><br><br>
-  <h4>What we have created</h4> <br><br>
- 
-       Date : 
-        <input type="text" id="datepicker" >
-      
-  <br> <br> <br> <br> <br> <br> <br> <br>
-
-</div> 
-<div class="downArrow bounce text-center">
-    <a href="#contact"><i class="fa fa-angle-down fa-2x" aria-hidden="true"></i></a></div>
-</div> 
- 
-<br> <br><br><br>
-
-
-<!-- Container (Contact Section) -->
-<div id="contact" style="background-color:rgb(162, 234, 243);opacity:0.9;" class="container-fluid"
-data-aos="zoom-in-up"> 
-  <div class="container" data-dismiss="fade-up"> 
-<div class="row slideanim">
- <h2 class="text-center">Meet Us </h2> <br> <br>
- <div class="container">
+      <button id="btnShow1">Read Next Story</button>
         
-        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-          </ol>
-      
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner">
-      
-            <div class="item active" >
-
-              <img src="images/sophie.jpg" alt="Sophie Guo" style="width:30%" class="center" >
-              <div class="carousel-caption">
-                <p>Sophie Guo</p>
-                <p>Freshman</p>
-              </div>
-            </div>
-      
-            <div class="item">
-              <img src="images/kaveri.jpg" alt="Kaveri Nadhamuni"  style="width:30%" class="center" >
-              <div class="carousel-caption">
-                <p>Kaveri Nadhamuni</p>
-                <p>Sophomore</p>
-              </div>
-            </div>
-          
-            <div class="item">
-              <img src="images/irin.jpg" alt="Irin Ghosh" style="width:30%" class="center" >
-              <div class="carousel-caption">
-                <p>Irin Ghosh</p>
-                <p>Sophomore</p>
-              </div>
-            </div>
-        
-          </div> 
-          <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div> </div>
-    <br> <br> 
-  <h2 class="text-center"> Contact Us</h2>
-  <br> <br> <br>
-  <div class="row">
-    <div class="col-sm-5">
-      <p>Contact us and we'll get back to you</p> <br>
-      <p><button style="border-radius:50%; height:40px; width:40px"><i class="glyphicon glyphicon-map-marker gly-spin"></i></button> Cambridge, Massachusetts</p>
-      <p><button style="border-radius:50%; height:40px; width:40px"><i class="glyphicon glyphicon-envelope gly-spin"></i></button>
-      <ul> 
-      <li><a href = "mailto: irin@mit.edu">irin@mit.edu</a></li>
-      <li><a href = "mailto: kaveri@mit.edu">kaveri@mit.edu</a></li>
-      <li><a href = "mailto: sophie@mit.edu">sophiejg@mit.edu</a></li>
-      </ul> </p>
-    </div>
-    <div class="col-sm-7 slideanim">
-      <div class="row">
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="name" placeholder="Name" type="text"  style="font-size:20px" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email"  style="font-size:20px" type="email" required>
-        </div> 
-      </div> <br>
-      <textarea class="form-control" id="comments" name="comments" placeholder="Comments" rows="8"  style="font-size:20px"></textarea><br>
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <button class="btn btn-default pull-right" type="submit"  style="font-size:20px">Send</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <br><br><br>
+        </div> </div></div>
+<br><br><br><br>
   <div class="downArrow bounce text-center">
-      <a href="#about"><i class="fa fa-angle-up fa-2x " aria-hidden="true"></i></a></div>
-  </div>
-</div> </div>
- <br> <br>
- 
+        <a href="#about"><i class="fa fa-angle-up fa-2x " aria-hidden="true"></i></a></div>
+    </div> 
+
 
 <script>
 $(document).ready(function(){
@@ -587,7 +431,7 @@ $(document).ready(function(){
 
     var picker = new Pikaday({ field: document.getElementById('datepicker'),
     minDate: new Date(2019, 0, 12, 0, 0, 0, 0), maxDate:date });
-    
+   
 </script>
 <script>
 $(window).scroll(function(){
@@ -614,35 +458,5 @@ $("#btnShow1").click(function(){
     $("#btnShow2").click(function(){
       $("#alert2").hide().show('medium');
     }); </script>
-<script>
-    // Set the date we're counting down to
-    var countDownDate = new Date("Jan 5, 2021 0:0:0").getTime();
-    
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-    
-      // Get todays date and time
-      var now = new Date().getTime();
-    
-      // Find the distance between now and the count down date
-      var distance = countDownDate - now;
-    
-      // Time calculations for days, hours, minutes and seconds
-      
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-      // Display the result in the element with id="demo"
-      document.getElementById("demo").innerHTML = '&nbsp;&nbsp;'+hours + "h &nbsp;&nbsp;&nbsp;"
-      + minutes + "m &nbsp;&nbsp;&nbsp;" + seconds + "s &nbsp;&nbsp;";
-    
-      // If the count down is finished, write some text 
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
-      }
-    }, 1000);
-    </script>     
 </body>
 </html>

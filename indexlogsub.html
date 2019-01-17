@@ -5,7 +5,6 @@
   <title>Bootstrap Theme Company Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="google-signin-client_id" content="830480139203-8orn4ab6l41q03u8mugt8n6erpttl7oj.apps.googleusercontent.com">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   
   <link rel="stylesheet"
@@ -20,7 +19,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <style>
 
 #alert1{
@@ -163,7 +161,7 @@
 }
 
   body {
-    background-image:url('images/bg3.jpeg');
+    background-image:url('images/bg1.jpeg');
     background-attachment:fixed;
     font-family: 'Satisfy', cursive;
     font-size:24px;
@@ -192,7 +190,7 @@
     margin-bottom: 30px;
   }  
   .jumbotron {
-    background-color: rgb(122, 202, 248);
+    background-color: rgb(173, 157, 243);
     color:rgb(7, 0, 39);
     opacity:0.6;
     padding: 100px 25px;
@@ -205,7 +203,7 @@
   
   .carousel-control.right, .carousel-control.left {
     background-image: none;
-    color: rgb(182, 141, 7);
+    color: rgb(114, 121, 184);
   }
   .carousel-indicators li {
     border-color: white;
@@ -224,7 +222,14 @@
   .item span {
     font-style: normal;
   }
-  
+  .dropdown{
+ background-color: rgb(123, 198, 233);
+ font-size: 18px !important;
+}
+.dropdown-menu{
+  background-color: rgb(123, 198, 233);
+  font-size: 18px !important;
+}
   .navbar {
     font-family: 'Satisfy',cursive;
     opacity: 0.95;  
@@ -298,46 +303,32 @@
   }
   </style>
 </head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-  <!-- Small modal -->
-  <div class="modal" id="registerModal" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" style="width:400px;">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="font-size:48px">×</span></button>
-            <h4>Log In <i class="fa fa-unlock"></i></h4>
-          </div> 
-          <div class="modal-body"> 
-            <form>
-            <p> Username <input type="text" style="width:370px" required>  <br></p> 
-            <p> Email address <input type="email" style="width:370px" required> <br></p>
-            <p> Password <input type="password" style="width:370px" required><br></p> 
-            <p> Introduction (optional) <textarea cols="42"></textarea></p>
-            <input type="submit" value="Register with Google" style="width:370px">
-            </form> </div>
+<!-- Small modal -->
+<div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+              <h4>Log Out <i class="fa fa-lock"></i></h4>
+            </div>
+            <div class="modal-body">
+              <p><i class="fa fa-question-circle"></i> Are you sure you want to log-out? <br /></p>
+              <div class="actionsBtns">
+                  <form action="/logout" method="post">
+                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                      <button onclick="location.href='index.html'" type="button" class="btn btn-default">
+                        Logout</button>
+                          <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-  <!-- Small modal -->
-<div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" style="width:400px;">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="font-size:48px">×</span></button>
-          <h4>Log In <i class="fa fa-unlock"></i></h4>
-        </div> 
-        <div class="modal-body"> 
-          <form>
-          <p> Email address <input type="email" style="width:370px" required>  <br></p>
-          <p> Password <input type="password" style="width:370px" required><br></p> <br>
-          <input type="submit" value="Sign In with Google" style="width:370px"> <br> <br>
-          <input type="submit" value="New user? Register" style="width:370px">
-          </form> </div>
-      </div>
-    </div>
-  </div>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
@@ -356,7 +347,14 @@
         <li><a href="#portfolio">Hall Of Fame</a></li>
         <li><a href="#contact">Contact Us</a></li>
         <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </li>
-        <li><a href="index.html" data-toggle="modal" data-target="#registerModal">login</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">username
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Profile</a></li>
+               <li><a href="index.html" data-toggle="modal" data-target="#logoutModal">logout</a></li>
+              <li><a href="#">Feed <img src="images/unlocked.png"></a></li>
+          </ul>
       </ul>
     </div>
   </div>
@@ -373,7 +371,7 @@
 <br><br><br><br>
 
 <!-- Container (About Section) -->
-<div id="about" class="container-fluid" style="background-color:rgb(182, 171, 230);opacity:0.8" data-aos="zoom-in-up">
+<div id="about" class="container-fluid" style="background-color:rgb(114, 184, 157);opacity:0.8" data-aos="zoom-in-up">
   <div class="container" data-aos="fade-up" >
     <div class="text-center" >
         <br> <br> <br>
@@ -395,29 +393,16 @@
 <br> <br><br><br>
 
 <!-- Container (Services Section) -->
-<div id="services" class="container-fluid text-center" style="background-color:rgb(252, 189, 189);opacity:0.8;"
+<div id="services" class="container-fluid text-center" style="background-color:rgb(241, 219, 241);opacity:0.8;"
 data-aos="zoom-in-up">
 <div class="conatiner">
     <br> <br>
     <div data-aos="fade-up"><h2>Prompt</h2></div><br>
     <div data-aos="fade-up"><h4 class="text-center">"Todays prompt - example a Hogwarts professor discusses theory of relativity with a dimunitive barmaid at 
       three broomsticks" </h4></div>
-      <br> <br> <br> <br>
-      <button id="demo" class="btn-default" style="border-radius:25px"></button> <br><br><br>
+  <br> <br> <br> <br>
   <div data-aos="fade-up">
-  <textarea class="form-control" id="comments" name="comments" placeholder="Your Story" rows="10" cols="50" style="font-size:24px">
-  </textarea> </div><br><br>
-  <div data-aos="fade-up"></div>
-  
-      <button id="btnShow1">Submit</button>
-        <div id="alert1" class="alert alert-danger alert-dismissable">
-            <button type="submit" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            You have to login first
-        </div>
-        <button id="btnShow2">Save To Drafts</button>
-        <div id="alert2" class="alert alert-danger alert-dismissable">
-            <button type="submit" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            You have to login first
+   <div class="container"><h4>Congrats! You have already submitted your writing for the day</h4></div>
         </div>
   <br> <br> <br> <br>
   
@@ -429,7 +414,7 @@ data-aos="zoom-in-up">
 <br> <br><br><br> 
 
 <!-- Container (Portfolio Section) -->
-<div id="portfolio" class="container-fluid text-center" style="background-color:rgb(90, 177, 177);opacity:0.8;"
+<div id="portfolio" class="container-fluid text-center" style="background-color:rgb(162, 234, 243);opacity:0.8;"
 data-aos="zoom-in-up">
     <div data-aos="fade-up">
   <br> 
@@ -437,7 +422,7 @@ data-aos="zoom-in-up">
   <h4>What we have created</h4> <br><br>
  
        Date : 
-        <input type="text" id="datepicker" >
+        <input type="text" id="datepicker">
       
   <br> <br> <br> <br> <br> <br> <br> <br>
 
@@ -450,7 +435,7 @@ data-aos="zoom-in-up">
 
 
 <!-- Container (Contact Section) -->
-<div id="contact" style="background-color:rgb(162, 234, 243);opacity:0.9;" class="container-fluid"
+<div id="contact" style="background-color:rgb(162, 189, 209);opacity:0.9;" class="container-fluid"
 data-aos="zoom-in-up"> 
   <div class="container" data-dismiss="fade-up"> 
 <div class="row slideanim">
@@ -587,7 +572,7 @@ $(document).ready(function(){
 
     var picker = new Pikaday({ field: document.getElementById('datepicker'),
     minDate: new Date(2019, 0, 12, 0, 0, 0, 0), maxDate:date });
-    
+   
 </script>
 <script>
 $(window).scroll(function(){
@@ -614,35 +599,5 @@ $("#btnShow1").click(function(){
     $("#btnShow2").click(function(){
       $("#alert2").hide().show('medium');
     }); </script>
-<script>
-    // Set the date we're counting down to
-    var countDownDate = new Date("Jan 5, 2021 0:0:0").getTime();
-    
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-    
-      // Get todays date and time
-      var now = new Date().getTime();
-    
-      // Find the distance between now and the count down date
-      var distance = countDownDate - now;
-    
-      // Time calculations for days, hours, minutes and seconds
-      
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-      // Display the result in the element with id="demo"
-      document.getElementById("demo").innerHTML = '&nbsp;&nbsp;'+hours + "h &nbsp;&nbsp;&nbsp;"
-      + minutes + "m &nbsp;&nbsp;&nbsp;" + seconds + "s &nbsp;&nbsp;";
-    
-      // If the count down is finished, write some text 
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
-      }
-    }, 1000);
-    </script>     
 </body>
 </html>
