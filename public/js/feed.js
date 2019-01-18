@@ -10,7 +10,8 @@ const API_ENDPOINT_START = 'http://google-catbook.herokuapp.com';
 // }
 
 // Creates an html block for a story
-function storyDOMObject(storyJSON) {
+function postDOMObject(postJSON) {
+
 }
 
 // {
@@ -21,8 +22,20 @@ function storyDOMObject(storyJSON) {
 // }
 
 // Creates a comment block for a story
-function commentDOMObject(commentJSON) {
+function votesDOMObject(voteJSON) {
 }
+
+function submitPostHandler() {
+
+}
+function newPostDOMObject() {
+
+}
+
+function submitVoteHandler() {
+    
+}
+
 
 // Makes API requests and calls helper functions
 function renderStories() {
