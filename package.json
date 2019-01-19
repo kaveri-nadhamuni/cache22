@@ -1,0 +1,24 @@
+{
+  "name": "cache22",
+  "version": "1.0.0",
+  "description": "writing prompt web app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaveri-nadhamuni/cache22.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaveri-nadhamuni/cache22/issues"
+  },
+  "homepage": "https://github.com/kaveri-nadhamuni/cache22#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "http": "0.0.0"
+  }
+}
