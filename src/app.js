@@ -15,3 +15,6 @@ const server = http.Server(app);
 server.listen(port, function() {
     console.log('Server listening on port: ' + port); //function executed when server is started up
 });
+
+const views  = require('./routes/views')
+const db = require('./db');
