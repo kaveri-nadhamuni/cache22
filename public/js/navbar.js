@@ -26,7 +26,8 @@ function addDropDownMenu(user) {
     $(".dropdown-menu").append('<li><a href="index.html" data-toggle="modal" data-target="#logoutModal">Logout</a></li>')
 
 
-
+    //.setAttribute
+    //.innerHTML
 
     /*const dropMenu = document.createElement('UL');
     dropMenu.className = "dropdown-menu";

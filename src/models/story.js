@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const StoryModelSchema = new mongoose.Schema({
     creator_id: String,
     creator_name: String,

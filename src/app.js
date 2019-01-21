@@ -1,20 +1,35 @@
 const http  = require('http');
 const express = require('express');
+const views  = require('./routes/views')
+const db = require('.db');
 
 //initializes express app
 const app = express();
+const server = http.Server(app);
 
 app.use('/static', express.static('public'));
+app.use('/', views);
 
-app.get('/', function(req,res) {
-    res.sendFile('index.html', {roots: 'src/views'})
-})
+
+app.use(function(req, res, next) {
+    const err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+app.use(function(err, req, res, next){
+    res.status(err.status || 500);
+    res.send({
+        status: err.status,
+        message: err.message,
+    });
+});
+
+
 
 const port = 3000;
-const server = http.Server(app);
 server.listen(port, function() {
     console.log('Server listening on port: ' + port); //function executed when server is started up
 });
 
-const views  = require('./routes/views')
-const db = require('./db');
+
