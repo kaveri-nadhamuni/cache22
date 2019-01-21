@@ -9,4 +9,4 @@ const StoryModelSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('StoryModel',StoryModelSchema)
+module.exports = mongoose.model('StoryModel', StoryModelSchema)

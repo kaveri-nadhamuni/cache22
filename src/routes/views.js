@@ -10,4 +10,8 @@ router.get('/u/profile', function(req,res){
     res.sendFile('profile.html', {root: 'src/views'})
 })
 
+router.get('/u/todays-feed', function(req,res){
+    res.sendFile('feed.html', {root: 'src/views'})
+})
+
 module.exports = router;
