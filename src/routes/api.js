@@ -27,12 +27,6 @@ router.get('/user', function(req, res) {
 //add .get endpoints for drafts
 
 
-router.get('/posts', function(req, res) {
-    Post.find({}, function(err, stories) {
-        res.send(stories);
-    });
-});
-   
 router.post('/post', connect.ensureLoggedIn(), function(req, res) {
     const newPost = new Post({
         'creator_id': req.user._id,
@@ -51,6 +45,23 @@ router.post('/post', connect.ensureLoggedIn(), function(req, res) {
    
     res.send({});
 });
+
+router.get('/posts', function(req, res) {
+    Post.find({}, function(err, posts) {
+        res.send(posts);
+    });
+});
+
+//figure out timer
+router.get('/todayposts', function(req, res) {
+    Post.find({}, function(err, posts) {
+        res.send(posts);
+    });
+});
+
+router.get('/userposts', function(req,res) {
+    Post.find({creator_id: req.query.creator_id})
+})
 
 //work in progress
 router.post('/draft', connect.ensureLoggedIn(), function(req, res) {
@@ -72,6 +83,11 @@ router.post('/draft', connect.ensureLoggedIn(), function(req, res) {
     res.send({});
 });
 
+router.get('/userdrafts', function(req,res){
+    Draft.find({creator_id: req.query.creator_id}, function(err, drafts){
+        res.send(drafts);
+    })
+});
 
 router.post('/upvote', connect.ensureLoggedIn(), function(req,res) {
     Post.findById(req.body._id, function(err, post){

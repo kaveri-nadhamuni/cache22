@@ -3,11 +3,6 @@ const API_ENDPOINT_START = 'http://google-catbook.herokuapp.com';
 // GET /api/stories fetches all stories
 // GET /api/comment fetches all comments for a story, given the story's id (passed as the 'parent' parameter)
 
-// {
-//   _id: "5a53b37189c7bb15141e9e40",
-//   creator_name: "Danny Tang", 
-//   content: "I don't have any cats now, but this web app has inspired me to adopt 10!"
-// }
 
 // Creates an html block for a story
 function postDOMObject(postJSON) {
@@ -65,7 +60,6 @@ function newPostDOMObject(user) {
         });
         
     }
-        //finish code
     newPostSubmit.appendChild(saveButton);
 
     draftButton = document.createElement('button');
@@ -131,5 +125,12 @@ function submitVoteHandler(postJSON) {
 
 
 // Makes API requests and calls helper functions
-function renderStories() {
+function renderPosts() {
+    const postsDiv = document.getElementById('today-feed-container');
+    get('/api/posts', {}, function(postsArr){
+        for (let i =0; i < postsArr.length; i++) {
+        const currentPost = postsArr[i];
+        postsDiv.prepend(postDOMObject(currentPost, user));
+        }
+    });
 }
