@@ -1,12 +1,12 @@
 const express = require('express');
 const connect = require('connect-ensure-login');
 
-const Post = require('../models/post');
+const Story = require('../models/story');
 const Creator = require('../models/creator');
 
 const router = express.Router();
 
-router.get('/user', function(req, res) {
+router.get('/', function(req, res) {
     //use req.query to get the passed in ID
    
     //User model to query Mongo User Collection and access that user object
@@ -14,7 +14,7 @@ router.get('/user', function(req, res) {
    
     //return that object to the user 
    
-    User.findOne({_id: req.query._id}, function(err, user){
+    Creator.findOne({_id: req.query._id}, function(err, user){
       res.send(user);
     });
 });
