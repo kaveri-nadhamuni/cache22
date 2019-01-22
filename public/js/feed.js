@@ -57,8 +57,13 @@ function newPostDOMObject(user) {
     if(user._id !== undefined) {
         saveButtone.addEventListener('click', submitPostHandler);
         userSubmit = true;
-        //finish code
+        //successful submission popup
     }
+    else{
+        newPostSubmit.innerhtml = 
+        
+    }
+        //finish code
     newPostSubmit.appendChild(saveButton);
 
     draftButton = document.createElement('button');

@@ -1,3 +1,60 @@
+function postDOMObject(postJSON) {
+  const card = document.createElement('div');
+  card.setAttribute('id', postJSON._id);
+  card.className = 'post card';
+
+  const cardBody = document.createElement('div');
+  cardBody.className = 'card-body';
+  card.appendChild(cardBody);
+
+  const creatorSpan = document.createElement('div');
+  creatorSpan.className = 'story-creator card-title';
+  creatorSpan.innerHTML = postJSON.creator_name;
+  cardBody.appendChild(creatorSpan);
+
+  const contentSpan = document.createElement('p');
+  contentSpan.className = 'story-content card-text';
+  contentSpan.innerHTML = postJSON.content;
+  cardBody.appendChild(contentSpan);
+
+  const numberOfUpvotes = document.createElement('span');
+  numberOfUpvotes.className = 'upvote-number';
+  numberOfUpvotes.innerHTML = postJSON.upvotes;
+  card.appendChild(numberOfUpvotes);
+
+  return card;
+}
+
+function draftDOMObject(draftJSON) {
+  const card = document.createElement('div');
+  card.setAttribute('id', draftJSON._id);
+  card.className = 'post card';
+
+  const cardBody = document.createElement('div');
+  cardBody.className = 'card-body';
+  card.appendChild(cardBody);
+
+  const creatorSpan = document.createElement('div');
+  creatorSpan.className = 'story-creator card-title';
+  creatorSpan.innerHTML = draftJSON.creator_name;
+  cardBody.appendChild(creatorSpan);
+
+  const contentSpan = document.createElement('p');
+  contentSpan.className = 'story-content card-text';
+  contentSpan.innerHTML = draftJSON.content;
+  cardBody.appendChild(contentSpan);
+
+  const numberOfUpvotes = document.createElement('span');
+  numberOfUpvotes.className = 'upvote-number';
+  numberOfUpvotes.innerHTML = draftJSON.upvotes;
+  card.appendChild(numberOfUpvotes);
+
+  return card;
+}
+
+
+
+
 function renderUserData(user) {
     // rendering name
 	const nameContainer = document.getElementById('name-container');
@@ -24,3 +81,14 @@ function renderUserData(user) {
   latestPostCard.appendChild(latestPost);*/ //copied and pasted from catbook
 }
 
+//call get function that specifies all posts with creator_id that matches user._id
+
+function main() {
+  const profileId = window.location.search.substring(1);
+  get('/api/user', {'_id': profileId}, function(profileUser) {
+    renderUserData(profileUser);
+  });
+  get('/api/whoami', {}, function(user) {
+    renderNavbar(user);
+  });
+}
