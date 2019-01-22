@@ -11,7 +11,36 @@ const API_ENDPOINT_START = 'http://google-catbook.herokuapp.com';
 
 // Creates an html block for a story
 function postDOMObject(postJSON) {
+  const card = document.createElement('div');
+  card.setAttribute('id', postJSON._id);
+  card.className = 'post card';
 
+  const cardBody = document.createElement('div');
+  cardBody.className = 'card-body';
+  card.appendChild(cardBody);
+
+  const creatorSpan = document.createElement('div');
+  creatorSpan.className = 'story-creator card-title';
+  creatorSpan.innerHTML = psotJSON.creator_name;
+  cardBody.appendChild(creatorSpan);
+
+  const contentSpan = document.createElement('p');
+  contentSpan.className = 'story-content card-text';
+  contentSpan.innerHTML = postJSON.content;
+  cardBody.appendChild(contentSpan);
+
+  const numberOfUpvotes = document.createElement('span');
+  numberOfUpvotes.className = 'upvote-number';
+  numberOfUpvotes.innerHTML = postJSON.upvotes;
+  card.appendChild(numberOfUpvotes);
+
+
+  const upvoteButton = document.createElement('button');
+  upvoteButton.innerText = 'Upvote';
+  upvoteButton.className = 'upvote-button(postJSON)';
+  upvoteButton.onClick = 'submitVoteHandler()';
+  card.appendChild(upvoteButton);
+  return card;
 }
 
 // {
@@ -22,18 +51,21 @@ function postDOMObject(postJSON) {
 // }
 
 // Creates a comment block for a story
-function votesDOMObject(voteJSON) {
+function votesDOMObject(postJSON) {
 }
 
 function submitPostHandler() {
-
 }
+
 function newPostDOMObject() {
 
 }
 
 function submitVoteHandler() {
-    
+    let el = document.getElementById('upvote-number');
+    var integerVote = parseInt(postJSON.upvotes, 10);
+    el.innerText = integerVote + 1;
+    // code to increase the number of upvotes in database    
 }
 
 
