@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 
-const PostModelSchema = new mongoose.Schema({
+const DraftModelSchema = new mongoose.Schema({
     creator_id: String,
     creator_name: String,
     content: String,
-    upvotes: Number,
     timestamp: String
 
 });
 
-module.exports = mongoose.model('PostModel', PostModelSchema)
+module.exports = mongoose.model('DraftModel', DraftModelSchema)

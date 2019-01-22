@@ -60,7 +60,7 @@ router.post('/draft', connect.ensureLoggedIn(), function(req, res) {
         'content': req.body.content,
     });
    
-    newPost.save(function(err,story) {
+    newDraft.save(function(err,story) {
         User.findOne({_id: req.user.id}, function(err,user) {
             user.last_post = req.body.content; //change
            user.save();
@@ -71,6 +71,24 @@ router.post('/draft', connect.ensureLoggedIn(), function(req, res) {
    
     res.send({});
 });
+
+
+router.post('/upvote', connect.ensureLoggedIn(), function(req,res) {
+    Post.findById(req.body._id, function(err, post){
+        if(post){
+            post.upvotes += 1
+            post.save(function(err){
+                if(err) {
+                    console.log("unable to update vote")
+                }
+            });
+        }else{
+            console.log(err);
+        }
+        res.send({post});
+      });
+
+})
 
 
 module.exports = router;
