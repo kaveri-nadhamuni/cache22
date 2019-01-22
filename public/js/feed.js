@@ -55,12 +55,12 @@ function newPostDOMObject(user) {
     saveButton.setAttribute('id', 'btnShow1');
     saveButton.innerText = 'Submit';
     if(user._id !== undefined) {
-        saveButtone.addEventListener('click', submitPostHandler);
+        saveButton.addEventListener('click', submitPostHandler);
         userSubmit = true;
         //successful submission popup
     }
     else{
-        newPostSubmit.innerhtml = 
+        newPostSubmitbutton.addEventListener('click',function(){ alert("I am an alert box!");});
         
     }
         //finish code
