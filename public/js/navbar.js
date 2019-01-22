@@ -1,39 +1,27 @@
 function addDropDownMenu(user) {
     const listItem = document.createElement('LI');
-    listItem.className = "dropdown";
-
-    $(".dropdown").append(
-        $("<a>").attr({class: "dropdown-toggle", data-toggle: "dropdown", href:"#"}).append(user.name).append(
-            $("<span>").attr("class","caret")
-        ));
-        
-
-    //former code in vanilla JS commented out, replaced with jquery
+    listItem.className = 'dropdown';
    
-    /*const itemLink = document.createElement('a');
-    itemLink.className = "dropdown-toggle"
-    $(".dropdown-toggle").attr("data-toggle","dropdown"); //itemLink.data-toggle = "dropdown" using jQuery library
-    itemLink.href = "#";
+    const itemLink = document.createElement('a');
+    itemLink.className = 'dropdown-toggle';
+    itemLink.setAttribute('data-toggle','dropdown'); //itemLink.data-toggle = "dropdown" using jQuery library
+    itemLink.href = '#';
     itemLink.innerHTML = user.name; //need to give name attribute to user
     listItem.appendChild(itemLink);
 
-    const dropdownSpan = document.createElement("span");
-    dropdownSpan.className = "caret";
-    itemLink.appendChild(dropdownSpan);*/
+    const dropdownSpan = document.createElement('span');
+    dropdownSpan.className = 'caret';
+    itemLink.appendChild(dropdownSpan);
 
-    $(".dropdown").append($("<ul>").attr("class","dropdown-menu"));
+    const dropMenu = document.createElement('UL');
+    dropMenu.className = "dropdown-menu";
+    listItem.appendChild(dropMenu);
+
     $(".dropdown-menu").append('<li><a href="#">Profile</a></li>');
     $(".dropdown-menu").append('<li><a href="index.html" data-toggle="modal" data-target="#logoutModal">Logout</a></li>')
 
 
-    //.setAttribute
-    //.innerHTML
-
-    /*const dropMenu = document.createElement('UL');
-    dropMenu.className = "dropdown-menu";
-    listItem.appendChild(dropMenu);
-
-    const menuProfileItem = document.createElement('LI');
+    /*const menuProfileItem = document.createElement('LI');
     dropMenu.appendChild(menuProfileItem);
 
     const menuProfileSpan = document.createElement('a');

@@ -43,21 +43,53 @@ function postDOMObject(postJSON) {
   return card;
 }
 
-// {
-//   _id: "5a53ba14a6078f28283eb9a1",
-//   creator_name: "Rupayan Neogy", 
-//   parent: "5a53b37189c7bb15141e9e40", 
-//   content: "I think a good name is Winston"
-// }
 
-// Creates a comment block for a story
-function votesDOMObject(postJSON) {
+/*function votesDOMObject(postJSON) {
+}*/
+
+
+//configures the buttons on a newPost
+function newPostDOMObject(user) {
+    const newPostSubmit = document.getElementById('btnPost');
+    saveButton = document.createElement('button');
+    saveButton.setAttribute('id', 'btnShow1');
+    saveButton.innerText = 'Submit';
+    if(user._id !== undefined) {
+        saveButtone.addEventListener('click', submitPostHandler);
+        userSubmit = true;
+        //finish code
+    }
+    newPostSubmit.appendChild(saveButton);
+
+    draftButton = document.createElement('button');
+    draftButton.setAttribute('id', 'btnShow2');
+    saveButton.innerText = 'Save To Drafts';
+    newPostSubmit.appendChild(draftButton);
+
+
+  
+      /*<button id="btnShow1">Submit</button>
+        <div id="alert1" class="alert alert-danger alert-dismissable">
+            <button type="submit" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            You have to login first
+        </div>
+        <button id="btnShow2">Save To Drafts</button>
+        <div id="alert2" class="alert alert-danger alert-dismissable">
+            <button type="submit" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            You have to login first
+        </div>*/
+
 }
 
 function submitPostHandler() {
-}
+    const newPostInput = document.getElementById('post-container');
 
-function newPostDOMObject() {
+    const input = {
+        content: newPostInput.value,
+    };
+
+    post('/api/post', input);
+    newPostInput.value = '';
 
 }
 
