@@ -21,7 +21,7 @@ function postDOMObject(postJSON) {
 
   const creatorSpan = document.createElement('div');
   creatorSpan.className = 'story-creator card-title';
-  creatorSpan.innerHTML = psotJSON.creator_name;
+  creatorSpan.innerHTML = postJSON.creator_name;
   cardBody.appendChild(creatorSpan);
 
   const contentSpan = document.createElement('p');
