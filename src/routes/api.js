@@ -56,8 +56,10 @@ router.get('/todayposts', function(req, res) {
 });
 
 router.get('/userposts', function(req,res) {
-    Post.find({creator_id: req.query.creator_id})
-})
+    Post.find({creator_id: req.query.creator_id}, function(err, userposts){
+        res.send(user.posts);
+    })
+});
 
 //work in progress
 router.post('/draft'/*, connect.ensureLoggedIn()*/, function(req, res) {

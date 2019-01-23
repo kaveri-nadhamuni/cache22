@@ -81,6 +81,14 @@ function renderUserData(user) {
   latestPostCard.appendChild(latestPost);*/ //copied and pasted from catbook
 }
 
+function renderUserPosts(user) {
+	const postsDiv = document.getElementById('user-story-container');
+}
+
+function renderUserDrafts(user) {
+	const draftsDiv = document.getElementById('user-draft-container');
+
+}
 //call get function that specifies all posts with creator_id that matches user._id
 
 function main() {

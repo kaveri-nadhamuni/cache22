@@ -17,8 +17,8 @@ function addDropDownMenu(user) {
     dropMenu.className ='dropdown-menu';
     listItem.appendChild(dropMenu);
 
-    $(".dropdown-menu").append('<li><a href="/u/profile">Profile</a></li>');
-    $(".dropdown-menu").append('<li><a href="index.html" data-toggle="modal" data-target="#logoutModal">Logout</a></li>')
+    //$(".dropdown-menu").append('<li><a href="/u/profile">Profile</a></li>');
+    //$(".dropdown-menu").append('<li><a href="index.html" data-toggle="modal" data-target="#logoutModal">Logout</a></li>')
 
 
     const menuProfileItem = document.createElement('LI');
