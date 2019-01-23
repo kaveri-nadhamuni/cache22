@@ -58,9 +58,9 @@ function draftDOMObject(draftJSON) {
 function renderUserData(user) {
     // rendering name
 	const nameContainer = document.getElementById('name-container');
-	const nameHeader = document.createElement('h1');
-	nameHeader.innerHTML = user.name;
-	nameContainer.appendChild(nameHeader);
+	nameContainer.innerText = user.creator_name;
+	const bioContainer = document.getElementById('bio-container');
+	bioContainer.innerText = user.bio;
 
 	// rendering profile image
 	/*const profileImage = document.getElementById('profile-image');
