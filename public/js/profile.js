@@ -92,11 +92,42 @@ function renderUserDrafts(user) {
 //call get function that specifies all posts with creator_id that matches user._id
 
 function main() {
-  const profileId = window.location.search.substring(1);
+  /*const profileId = window.location.search.substring(1);
   get('/api/user', {'_id': profileId}, function(profileUser) {
+
+  
     renderUserData(profileUser);
   });
   get('/api/whoami', {}, function(user) {
     renderNavbar(user);
   });
+
+});*/
+
+
+  const dummyUser = {
+    _id: 'anonid',
+    name: 'Anonymous',
+    last_post: 'Anon was here',
+  };
+
+  const postDummy = {
+    creator_id: "12345667",
+    creator_name: "anonnnymous",
+    content: "this is my story",
+    upvotes: 3,
+    timestamp: "0:0:0"
+  };
+
+  const draftDummy = {
+    creator_id: "12233445",
+    creator_name: "anonymous2",
+    content: "This is my draft",
+    timestamp: "1:0:0"
+  };
+
+  renderUserData(dummyUser);
+  renderNavBar(dummyUser);
+  postDOMObject(postDummy);
+  draftDOMObject(draftDummy);
 }
