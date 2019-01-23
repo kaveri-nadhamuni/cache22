@@ -1,14 +1,30 @@
 const http  = require('http');
+const bodyParser = require('body-parser');
 const express = require('express');
+
+
+//local dependencies
 const views  = require('./routes/views')
-const db = require('.db');
+const db = require('./db');
+const api = require('./routes/api');
 
 //initializes express app
 const app = express();
 
+// set POST request body parser
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+/*// set up sessions
+app.use(session({
+    secret: 'session-secret',
+    resave: 'false',
+    saveUninitialized: 'true'
+  }));*/
 
 //set routes
 app.use('/', views);
+app.use('/api', api);
 app.use('/static', express.static('public'));
 
 

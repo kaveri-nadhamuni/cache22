@@ -1,5 +1,5 @@
 const express = require('express');
-const connect = require('connect-ensure-login');
+//const connect = require('connect-ensure-login');
 
 const Post = require('../models/post');
 const User = require('../models/user');
@@ -27,7 +27,7 @@ router.get('/user', function(req, res) {
 //add .get endpoints for drafts
 
 
-router.post('/post', connect.ensureLoggedIn(), function(req, res) {
+router.post('/post'/*, connect.ensureLoggedIn()*/, function(req, res) {
     const newPost = new Post({
         'creator_id': "anonid"/*req.user._id*/,
         'creator_name': "anonymous"/*req.user.name*/,
@@ -60,7 +60,7 @@ router.get('/userposts', function(req,res) {
 })
 
 //work in progress
-router.post('/draft', connect.ensureLoggedIn(), function(req, res) {
+router.post('/draft'/*, connect.ensureLoggedIn()*/, function(req, res) {
     const newDraft = new Draft({
         'creator_id': "anonid"/*req.user._id*/,
         'creator_name': "anonymous" /*req.user.name*/,
@@ -81,7 +81,7 @@ router.get('/userdrafts', function(req,res){
     })
 });
 
-router.post('/upvote', connect.ensureLoggedIn(), function(req,res) {
+router.post('/upvote'/*, connect.ensureLoggedIn()*/, function(req,res) {
     Post.findById(req.body._id, function(err, post){
         if(post){
             post.upvotes += 1
