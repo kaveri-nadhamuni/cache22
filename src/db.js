@@ -1,6 +1,6 @@
 // filepath: ./src/db.js
 const mongoose = require("mongoose");
-const mongoURL = 'ENTER MONGODB URL';
+const mongoURL = 'mongodb+srv://admin:165612q@cluster0-oq6hw.mongodb.net/test?retryWrites=true';
 const options = { useMongoClient: true };
 
 // connects to MongoDB

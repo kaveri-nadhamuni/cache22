@@ -1,4 +1,5 @@
 function main() {
+  userSubmit = false;
   const user = {
     _id: 'anonid',
     name: 'Anonymous',

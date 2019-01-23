@@ -14,19 +14,19 @@ function addDropDownMenu(user) {
     itemLink.appendChild(dropdownSpan);
 
     const dropMenu = document.createElement('UL');
-    dropMenu.className = "dropdown-menu";
+    dropMenu.className ='dropdown-menu';
     listItem.appendChild(dropMenu);
 
-    $(".dropdown-menu").append('<li><a href="#">Profile</a></li>');
+    $(".dropdown-menu").append('<li><a href="/u/profile">Profile</a></li>');
     $(".dropdown-menu").append('<li><a href="index.html" data-toggle="modal" data-target="#logoutModal">Logout</a></li>')
 
 
-    /*const menuProfileItem = document.createElement('LI');
+    const menuProfileItem = document.createElement('LI');
     dropMenu.appendChild(menuProfileItem);
 
     const menuProfileSpan = document.createElement('a');
-    menuProfileSpan.href = "#";
-    menuProfileSpan.innerHTML = "Profile";
+    menuProfileSpan.href = '/u/profile?'+user._id;
+    menuProfileSpan.innerHTML = 'Profile';
     menuProfileItem.appendChild(menuProfileSpan);
 
     const menuLogoutItem = document.createElement('LI');
@@ -35,10 +35,10 @@ function addDropDownMenu(user) {
     const menuLogoutSpan = document.createElement('a');
     menuLogoutSpan.href = "index.html";
     menuLogoutSpan.className = "logout-tab"
-    $(".logout-tab").attr("data-toggle","modal");
-    $(".logout-tab").attr("data-target","#logoutModal");
+    menuLogoutSpan.setAttribute("data-toggle","modal");
+    menuLogoutSpan.setAttribute("data-target","#logoutModal");
     menuLogoutSpan.innerHTML = "Logout";
-    menuLogoutItem.appendChild(menuLogoutSpan);*/
+    menuLogoutItem.appendChild(menuLogoutSpan);
 
     return listItem;
 }
@@ -49,8 +49,19 @@ function updateTodaysFeed(userSubmit) {
 
 }
 
+function renderLoginButton() {
+    const listItem = document.createElement('LI');
+
+    const itemLink = document.createElement('a');
+    listItem.appendChild(itemLink);
+    itemLink.href = "#login";
+    itemLink.innerText = "Login";
+
+    return listItem;
+}
+
 function renderNavBar(user, userSubmit) { //will need to define userSubmit as a boolean elsewhere
-    const navbarDiv = document.getElementById("nav navbar-nav navbar-right")
+    const navbarDiv = document.getElementById("innerNavBar")
     
     if (user._id !== undefined && userSubmit) {
         navbarDiv.appendChild(addDropDownMenu(user));
@@ -61,7 +72,7 @@ function renderNavBar(user, userSubmit) { //will need to define userSubmit as a 
         navbarDiv.appendChild(addDropDownMenu(user));
     }
     else {
-        //code for login button
+        navbarDiv.appendChild(renderLoginButton());
     }
 }
 

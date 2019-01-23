@@ -29,16 +29,12 @@ router.get('/user', function(req, res) {
 
 router.post('/post', connect.ensureLoggedIn(), function(req, res) {
     const newPost = new Post({
-        'creator_id': req.user._id,
-        'creator_name': req.user.name,
+        'creator_id': "anonid"/*req.user._id*/,
+        'creator_name': "anonymous"/*req.user.name*/,
         'content': req.body.content,
     });
    
-    newPost.save(function(err,story) {
-        User.findOne({_id: req.user.id}, function(err,user) {
-            user.last_post = req.body.content; //change
-           user.save();
-        });
+    newPost.save(function(err) {
         // configure socketio
         if (err) console.log(err);
     });
@@ -66,16 +62,12 @@ router.get('/userposts', function(req,res) {
 //work in progress
 router.post('/draft', connect.ensureLoggedIn(), function(req, res) {
     const newDraft = new Draft({
-        'creator_id': req.user._id,
-        'creator_name': req.user.name,
+        'creator_id': "anonid"/*req.user._id*/,
+        'creator_name': "anonymous" /*req.user.name*/,
         'content': req.body.content,
     });
    
     newDraft.save(function(err,story) {
-        User.findOne({_id: req.user.id}, function(err,user) {
-            user.last_post = req.body.content; //change
-           user.save();
-        });
         // configure socketio
         if (err) console.log(err);
     });
