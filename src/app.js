@@ -7,6 +7,7 @@ const express = require('express');
 const views  = require('./routes/views')
 const db = require('./db');
 const api = require('./routes/api');
+//const passport = require('./passport')
 
 //initializes express app
 const app = express();
@@ -27,6 +28,28 @@ app.use('/', views);
 app.use('/api', api);
 app.use('/static', express.static('public'));
 
+/*//passport
+app.use(passport.initialize());
+app.use(passport.session());*/
+
+/*//authentication
+app.get('/auth/google', passport.authenticate('google', {scope: ['profile'] }));
+
+app.get(
+    '/auth/google/callback',
+    passport.authenticate(
+      'google',
+      { failureRedirect: '/login' }
+    ),
+    function(req, res) {
+      res.redirect('/');
+    }
+  );
+  
+  app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+  });*/
 
 //404 route - access route that does not exist
 app.use(function(req, res, next) {

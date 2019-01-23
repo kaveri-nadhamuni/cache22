@@ -131,3 +131,5 @@ function main() {
   postDOMObject(postDummy);
   draftDOMObject(draftDummy);
 }
+
+main();

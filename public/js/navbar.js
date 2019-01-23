@@ -33,11 +33,11 @@ function addDropDownMenu(user) {
     dropMenu.appendChild(menuLogoutItem);
 
     const menuLogoutSpan = document.createElement('a');
-    menuLogoutSpan.href = "index.html";
+    menuLogoutSpan.href = '/logout';
     menuLogoutSpan.className = "logout-tab"
     menuLogoutSpan.setAttribute("data-toggle","modal");
     menuLogoutSpan.setAttribute("data-target","#logoutModal");
-    menuLogoutSpan.innerHTML = "Logout";
+    menuLogoutSpan.innerHTML = 'Logout';
     menuLogoutItem.appendChild(menuLogoutSpan);
 
     return listItem;
@@ -54,7 +54,7 @@ function renderLoginButton() {
 
     const itemLink = document.createElement('a');
     listItem.appendChild(itemLink);
-    itemLink.href = "#login";
+    itemLink.href = '/auth/google';
     itemLink.innerText = "Login";
 
     return listItem;
