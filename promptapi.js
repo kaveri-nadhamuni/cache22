@@ -1,7 +1,7 @@
-function httpGet(theUrl)
+function httpGet()
 {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.open( "GET", 'https://www.ineedaprompt.com/dictionary/default/prompt?q=adj+noun+adv+verb+noun+location', false ); // false for synchronous request
     xmlHttp.send( null );
     let parsed = JSON.parse(xmlHttp.responseText);
     //console.log(parsed.english)
