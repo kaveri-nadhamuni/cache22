@@ -51,3 +51,14 @@ function post(endpoint, params, successCallback, failureCallback) {
   };
   xhr.send(JSON.stringify(params));
 }
+
+function httpGet()
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", 'https://www.ineedaprompt.com/dictionary/default/prompt?q=adj+noun+adv+verb+noun+location', false ); // false for synchronous request
+    xmlHttp.send( null );
+    let parsed = JSON.parse(xmlHttp.responseText);
+    //console.log(parsed.english)
+    return(parsed.english)
+    
+}
