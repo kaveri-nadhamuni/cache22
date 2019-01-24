@@ -403,7 +403,8 @@ data-aos="zoom-in-up">
     <br> <br>
     <div data-aos="fade-up"><h2>Prompt</h2></div><br>
     <h4 class="text-center">
-      <div data-aos="fade-up" id = "prompt-container">"Todays prompt - example a Hogwarts professor discusses theory of relativity with a dimunitive barmaid at 
+      <div data-aos="fade-up" id = "prompt-container">prompt
+	    <!--<div data-aos="fade-up" id = "prompt-container">"Todays prompt - example a Hogwarts professor discusses theory of relativity with a dimunitive barmaid at 
         three broomsticks" <!--insert API generated prompt here -->
       </div>
     </h4>
@@ -639,6 +640,10 @@ $("#btnShow1").click(function(){
       if (distance < 0) {
         clearInterval(x);
         document.getElementById("demo").innerHTML = "EXPIRED";
+	//Added stuff
+	     var prompt = httpGet();
+	      var countDownDate = new Date("Jan 5, 2021 0:0:0")+ (h*60*60*1000);
+	
       }
     }, 1000);
     </script>     
