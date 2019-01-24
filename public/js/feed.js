@@ -47,7 +47,7 @@ function submitVoteHandler(postJSON) {
 function renderPosts() {
     const postsDiv = document.getElementById('today-feed-container');
     get('/api/posts', {}, function(postsArr){
-        for (let i =0; i < postsArr.length; i++) {
+        for (let i = 0; i < postsArr.length; i++) {
         const currentPost = postsArr[i];
         postsDiv.prepend(postDOMObject(currentPost, user));
         }

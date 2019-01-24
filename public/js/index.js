@@ -77,14 +77,13 @@ function renderButtons(user) {
 }
 
 function main() {
-  userSubmit = false;
-  const user = {
-    _id: 'anonid',
-    name: 'Anonymous',
-    last_post: 'Anon was here',
-  };
-  renderNavBar(user);
-  renderButtons(user);
+
+userSubmitStatus = false;
+  get('api/whoami', {}, function(user) {
+    console.log(user);
+    renderNavBar(user, userSubmitStatus);
+    renderButtons(user);
+  });
 }
 
 main();

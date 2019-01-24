@@ -107,7 +107,7 @@ function main() {
 
   const dummyUser = {
     _id: 'anonid',
-    name: 'Anonymous',
+    name: 'Anonymous-test',
     last_post: 'Anon was here',
   };
 

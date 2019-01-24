@@ -7,32 +7,32 @@ const express = require('express');
 const views  = require('./routes/views')
 const db = require('./db');
 const api = require('./routes/api');
-//const passport = require('./passport')
+const passport = require('./passport')
 
 //initializes express app
 const app = express();
 
 // set POST request body parser
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+/*app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());*/
 
-/*// set up sessions
+// set up sessions
 app.use(session({
     secret: 'session-secret',
     resave: 'false',
     saveUninitialized: 'true'
-  }));*/
+  }));
 
 //set routes
 app.use('/', views);
 app.use('/api', api);
 app.use('/static', express.static('public'));
 
-/*//passport
+//passport
 app.use(passport.initialize());
-app.use(passport.session());*/
+app.use(passport.session());
 
-/*//authentication
+//authentication
 app.get('/auth/google', passport.authenticate('google', {scope: ['profile'] }));
 
 app.get(
@@ -49,7 +49,7 @@ app.get(
   app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
-  });*/
+  });
 
 //404 route - access route that does not exist
 app.use(function(req, res, next) {

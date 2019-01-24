@@ -3,8 +3,18 @@ const express = require('express');
 
 const Post = require('../models/post');
 const User = require('../models/user');
+const Draft = require('../models/draft');
 
 const router = express.Router();
+
+router.get('/whoami', function(req,res) {
+    if(req.isAuthenticated()){
+        res.send(req.user);
+    }
+    else{
+        res.send({});
+    }
+});
 
 router.get('/user', function(req, res) {
     //use req.query to get the passed in ID
@@ -29,8 +39,8 @@ router.get('/user', function(req, res) {
 
 router.post('/post'/*, connect.ensureLoggedIn()*/, function(req, res) {
     const newPost = new Post({
-        'creator_id': "anonid"/*req.user._id*/,
-        'creator_name': "anonymous"/*req.user.name*/,
+        'creator_id': req.user._id,
+        'creator_name': req.user.name,
         'content': req.body.content,
     });
    
