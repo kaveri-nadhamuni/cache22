@@ -9,22 +9,32 @@ function httpGet()
     
 }
 
-var midnight = "0:00:00";
+function submitPromptHandler() {
+    let promptText = httpGet();
+
+    const input = {
+        prompt: promptText,
+    };
+
+    post('/api/prompt', input);
+}
+
+/*var midnight = "0:00:00";
 var now = null;
 now = moment().format("H:mm:ss");
 
 if (now === midnight){
-    //Added stuff
-      var prompt = document.getElementById("prompt-container");
-         var result = httpGet();
-       prompt.innerHTML = result;
-   }
+    let promptText = httpGet();
 
-/*if (prompt in database has undefined attributes) {
-    generate new prompt model
-    (post request)
-}
-else {
-    update existing prompt model
-    (using get request)
-}
+    const input = {
+        prompt: promptText,
+    };
+
+    post('/api/prompt', input);
+}*/
+
+const testButton = document.getElementById('testbtnID');
+testButton.addEventListener('click', submitPromptHandler);
+
+
+

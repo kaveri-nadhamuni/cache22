@@ -69,13 +69,8 @@ app.use(function(err, req, res, next) {
   });
 });
 
-<<<<<<< HEAD
-// port config
-const port = 3000; // config variable
-=======
 //defines what port server is listening on 
 const port = process.env.PORT || 3000;
->>>>>>> 114ecb27239567a6ae784fb7d8f0ed4d6a594cda
 const server = http.Server(app);
 server.listen(port, function() {
   console.log('Server running on port: ' + port);

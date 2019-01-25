@@ -4,6 +4,7 @@ const connect = require('connect-ensure-login');
 const Post = require('../models/post');
 const User = require('../models/user');
 const Draft = require('../models/draft');
+const Prompt = require('../models/prompt');
 
 const router = express.Router();
 
@@ -116,14 +117,10 @@ router.post('/upvote', connect.ensureLoggedIn(), function(req,res) {
 
 })
 
-<<<<<<< HEAD
-router
-Prompt.findone({req.query.date})
-=======
 router.post('/prompt', function(req,res){
     const newPrompt = new Prompt ({
         'prompt': req.body.prompt,
-        'timestamp': req.body.timestamp,
+        'timestamp': req.body.timestamp, //may comment out
     });
 
     newPrompt.save(function(err,prompt){
@@ -131,7 +128,12 @@ router.post('/prompt', function(req,res){
     });
     res.send({});
 });
->>>>>>> 114ecb27239567a6ae784fb7d8f0ed4d6a594cda
+
+router.get('/getprompt', function(req,res){
+    Prompt.findOne({}, {sort:{$natural: -1}}, function(err, prompt){
+        res.send(prompt);
+    })
+});
 
 
 module.exports = router;

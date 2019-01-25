@@ -66,30 +66,32 @@ function renderButtons(user) {
   newPostSubmit.appendChild(newPostSaveButton(user));
 }
 
+function renderPrompt(prompt) {
+    const promptDiv = document.getElementById("prompt-container");
+    promptDiv.innerHTML = prompt;
+}
+
+
 function main() {
 
 userSubmitStatus = false;
-  get('/api/whoami', {}, function(user) {
-    console.log(user);
-    //test
-    if (user._id !== undefined){
-        console.log("user defined");
-    }
-    else {
-        console.log("user undefined");
-    }
-    
+    get('/api/whoami', {}, function(user) {
+        console.log(user);
+        //test
+        if (user._id !== undefined){
+            console.log("user defined");
+        }
+        else {
+            console.log("user undefined");
+        }   
 
+        console.log("api/whoami success");
+        renderNavBar(user, userSubmitStatus);
+        renderButtons(user);
+    });
 
-    /*const user = {
-        _id: 'anonid',
-        name: 'Anonymous',
-        bio: 'Anon was here',
-      };*/
-
-    console.log("api/whoami success");
-    renderNavBar(user, userSubmitStatus);
-    renderButtons(user);
+    get('/api/getprompt', {}, function(prompt){
+        renderPrompt(prompt);
 });
   
 }
