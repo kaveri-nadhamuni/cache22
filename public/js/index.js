@@ -32,21 +32,11 @@ function newPostSaveButton(user){
       userSubmit = false;
   }
   else{
-      newPostSubmitbutton.addEventListener('click',function(){ 
+      draftButton.addEventListener('click',function(){ 
           alert("You must be logged in to submit a draft!");
       });
   }
   return(draftButton);
-    /*<button id="btnShow1">Submit</button>
-      <div id="alert1" class="alert alert-danger alert-dismissable">
-          <button type="submit" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          You have to login first
-      </div>
-      <button id="btnShow2">Save To Drafts</button>
-      <div id="alert2" class="alert alert-danger alert-dismissable">
-          <button type="submit" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          You have to login first
-      </div>*/
 }
 
 function submitPostHandler() {
@@ -81,6 +71,14 @@ function main() {
 userSubmitStatus = false;
   get('api/whoami', {}, function(user) {
     console.log(user);
+    //test
+    if (user._id !== undefined){
+        console.log("user defined");
+    }
+    else {
+        console.log("user undefined")
+    }
+    console.log("api/whoami success");
     renderNavBar(user, userSubmitStatus);
     renderButtons(user);
   });

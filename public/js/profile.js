@@ -44,11 +44,6 @@ function draftDOMObject(draftJSON) {
   contentSpan.innerHTML = draftJSON.content;
   cardBody.appendChild(contentSpan);
 
-  const numberOfUpvotes = document.createElement('span');
-  numberOfUpvotes.className = 'upvote-number';
-  numberOfUpvotes.innerHTML = draftJSON.upvotes;
-  card.appendChild(numberOfUpvotes);
-
   return card;
 }
 
@@ -81,12 +76,22 @@ function renderUserData(user) {
   latestPostCard.appendChild(latestPost);*/ //copied and pasted from catbook
 }
 
-function renderUserPosts(user) {
-	const postsDiv = document.getElementById('user-story-container');
+function renderUserPosts(postsArr) {
+  
+  const postsDiv = document.getElementById('user-story-container'); 
+  for (let i = 0; i < postsArr.length; i++) {
+    const currentPost = postsArr[i];
+    postsDiv.prepend(postDOMObject(currentPost));
+  }
+  
 }
 
-function renderUserDrafts(user) {
-	const draftsDiv = document.getElementById('user-draft-container');
+function renderUserDrafts(draftsArr) {
+  const draftsDiv = document.getElementById('user-draft-container');
+  for (let i = 0; i < draftsArr.length; i++) {
+    const currentPost = draftsArr[i];
+    postsDiv.prepend(draftDOMObject(currentPost));
+  }
 
 }
 //call get function that specifies all posts with creator_id that matches user._id
@@ -102,13 +107,21 @@ function main() {
     renderNavbar(user);
   });
 
+  get('/api/userposts', {'creator_id': user._id}, function(userPosts){
+    renderUserPosts(userPosts);
+  });
+
+  get('/api/userdrafts', {'creator_id': user._id}, function(userDrafts){
+    renderUserDrafts(userDrafts);
+  });
+
 });*/
 
 
   const dummyUser = {
     _id: 'anonid',
     name: 'Anonymous-test',
-    last_post: 'Anon was here',
+    bio: 'Anon was here',
   };
 
   const postDummy = {
@@ -119,7 +132,22 @@ function main() {
     timestamp: "0:0:0"
   };
 
+  const postDummy2 = {
+    creator_id: "13434533",
+    creator_name: "anonnnymous2",
+    content: "this is my story2",
+    upvotes: 3,
+    timestamp: "0:0:0"
+  };
+
   const draftDummy = {
+    creator_id: "12233445",
+    creator_name: "anonymous1",
+    content: "This is my draft",
+    timestamp: "1:0:0"
+  };
+
+  const draftDummy2 = {
     creator_id: "12233445",
     creator_name: "anonymous2",
     content: "This is my draft",

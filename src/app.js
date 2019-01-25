@@ -1,6 +1,7 @@
 const http  = require('http');
 const bodyParser = require('body-parser');
 const express = require('express');
+const session = require('express-session');
 
 
 //local dependencies
@@ -56,7 +57,7 @@ app.use(function(req, res, next) {
     const err = new Error('Not Found');
     err.status = 404;
     next(err);
-});
+})
 
 
 //route error handler
