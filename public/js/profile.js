@@ -90,7 +90,7 @@ function renderUserDrafts(draftsArr) {
   const draftsDiv = document.getElementById('user-draft-container');
   for (let i = 0; i < draftsArr.length; i++) {
     const currentPost = draftsArr[i];
-    postsDiv.prepend(draftDOMObject(currentPost));
+    draftsDiv.prepend(draftDOMObject(currentPost));
   }
 
 }
