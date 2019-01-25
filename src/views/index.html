@@ -403,10 +403,7 @@ data-aos="zoom-in-up">
     <br> <br>
     <div data-aos="fade-up"><h2>Prompt</h2></div><br>
     <h4 class="text-center">
-      <div data-aos="fade-up" id = "prompt-container">prompt
-	    <!--<div data-aos="fade-up" id = "prompt-container">"Todays prompt - example a Hogwarts professor discusses theory of relativity with a dimunitive barmaid at 
-        three broomsticks" <!--insert API generated prompt here -->
-      </div>
+      <div data-aos="fade-up" id = "prompt-container">prompt</div>
     </h4>
       <br> <br> <br> <br>
       <button id="demo" class="btn-default" style="border-radius:25px"></button> <br><br><br>
@@ -641,7 +638,9 @@ $("#btnShow1").click(function(){
         clearInterval(x);
         document.getElementById("demo").innerHTML = "EXPIRED";
 	//Added stuff
-	     var prompt = httpGet();
+      var prompt = document.getElementById("prompt-container");
+	     var result = httpGet();
+       prompt.innerHTML = result;
 	      var countDownDate = new Date("Jan 5, 2021 0:0:0")+ (h*60*60*1000);
 	
       }
