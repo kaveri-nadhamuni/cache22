@@ -44,12 +44,61 @@ function submitVoteHandler(postJSON) {
 }
 
 // Makes API requests and calls helper functions
-function renderPosts() {
-    const postsDiv = document.getElementById('today-feed-container');
+function renderPosts(postsArr) {
+    /*const postsDiv = document.getElementById('today-feed-container');
     get('/api/posts', {}, function(postsArr){
         for (let i = 0; i < postsArr.length; i++) {
         const currentPost = postsArr[i];
         postsDiv.prepend(postDOMObject(currentPost, user));
         }
-    });
+    });*/
+
+    let postsDiv = document.getElementById("today-feed-container"); 
+    for (let i = 0; i < postsArr.length; i++) {
+        const currentPost = postsArr[i];
+        postsDiv.prepend(postDOMObject(currentPost));
+    }
 }
+
+    const postDummy = {
+        creator_id: "12345667",
+        creator_name: "anonnnymous",
+        content: "this is my story:The following list of cat breeds includes only domestic cat breeds and domestic × wild hybrids. The list includes established breeds recognized by various cat registries, new and experimental breeds, landraces being established as standardized breeds, distinct domestic populations not being actively developed, and lapsed (extinct) Inconsistency in breed classification and naming among registries means that an individual animal may be considered different breeds by different registries (though not necessarily eligible for registry in them all, depending on its exact ancestry). ",
+        upvotes: 3,
+        timestamp: "0:0:0"
+    };
+    
+    const postDummy2 = {
+        creator_id: "13434533",
+        creator_name: "anonnnymous2",
+        content: "this is my story2",
+        upvotes: 3,
+        timestamp: "0:0:0"
+    };
+    
+    const postDummy3 = {
+        creator_id: "12233445",
+        creator_name: "anonymous1",
+        content:"this is my story:The following list of cat breeds includes only domestic cat breeds and domestic × wild hybrids. The list includes established breeds recognized by various cat registries, new and experimental breeds, landraces being established as standardized breeds, distinct domestic populations not being actively developed, and lapsed (extinct) Inconsistency in breed classification and naming among registries means that an individual animal may be considered different breeds by different registries (though not necessarily eligible for registry in them all, depending on its exact ancestry). ",
+        upvotes: 2,
+        timestamp: "1:0:0"
+    };
+    
+    const postDummy4 = {
+        creator_id: "12233445",
+        creator_name: "anonymous2",
+        content: "This is my draft",
+        upvotes: 4,
+        timestamp: "1:0:0"
+    };
+
+    dummyArr = [postDummy, postDummy2,postDummy3, postDummy4];
+
+    function main()
+    {
+        renderPosts(dummyArr);
+    }
+
+    main();
+
+

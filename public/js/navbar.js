@@ -29,6 +29,15 @@ function addDropDownMenu(user) {
     menuProfileSpan.innerHTML = 'Profile';
     menuProfileItem.appendChild(menuProfileSpan);
 
+
+    const menuFeedItem = document.createElement('LI');
+    dropMenu.appendChild(menuFeedItem);
+
+    const menuFeedSpan = document.createElement('a');
+    menuFeedSpan.href = '/u/todays-feed';
+    menuFeedSpan.innerHTML = "Today's Feed";
+    menuFeedItem.appendChild(menuFeedSpan);
+
     const menuLogoutItem = document.createElement('LI');
     dropMenu.appendChild(menuLogoutItem);
 
