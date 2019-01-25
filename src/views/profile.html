@@ -68,7 +68,69 @@
     transform: rotate(359deg);
   }
 }
+.togglebutton1, .togglebutton2 {
+  border-radius: 25px;
+  background-color: rgb(123, 109, 199);
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
 
+.togglebutton1 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.togglebutton1 :after {
+  content: url(/static/images/pen.png);
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.togglebutton1:hover span {
+  padding-right: 25px;
+}
+
+.togglebutton1:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.togglebutton2 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.togglebutton2 :after {
+  content: url(/static/images/book.png);
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+
+.togglebutton2:hover span {
+  padding-right: 25px;
+}
+
+.togglebutton2:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 /* Add Zoom Animation */
 .animate {
   -webkit-animation: animatezoom 0.6s;
@@ -380,7 +442,7 @@
 
 
 <!-- Container (About Section) -->
-<div id="about" class="container text-center"  data-aos="zoom-in-up" style="background-color: rgb(236, 229, 131); width:500px; opacity:0.9 ">
+<div id="about" class="container text-center"  data-aos="zoom-in-up" style="background-color: rgb(236, 217, 131); width:500px; opacity:0.9 ">
   <br>
   <div class="card">
     <img src="/static/images/writer.jpeg" alt="Avatar" style="width:100%; border-radius:25px;"> <br> <br>
@@ -399,19 +461,20 @@
 
 
 <br> <br><br><br>
+<div class = "container text-center">
+<button onclick="toggleFunction1()" class="togglebutton1"> <span class="span1">Writing &nbsp;&nbsp;&nbsp;</span></button>
+<button onclick="toggleFunction2()" class="togglebutton2"><span class="span2"> Drafts &nbsp;&nbsp;&nbsp;&nbsp;</span></button>
+</div>
+
+<br> <br><br><br>
 
 <!-- Container (Services Section) -->
-<div id="services" class="container-fluid text-center" style="background-color:rgb(231, 198, 250);opacity:0.8;"
+<div id="services" class="container-fluid text-center" style="background-color:rgb(248, 198, 250);opacity:0.8; display: none; border-radius:25px"
 data-aos="zoom-in-up">
 <div class="container">
     <br> <br>
     <div data-aos="fade-up"><h2>Your Writing</h2></div><br>
-    <h4 class="text-center">
-      <div data-aos="fade-up" id= "prompt-container">
-        API generated prompt text here <!-- add API generated daily prompt-->
-      </div>
-    </h4>
-  <br> <br> <br> <br>
+    
   <div data-aos="fade-up">
   <div  id="user-story-container">
     <!--user story from database inserted here-->
@@ -425,16 +488,16 @@ data-aos="zoom-in-up">
   
 
 <div class="downArrow bounce text-center">
-    <a href="#contact"><i class="fa fa-angle-down fa-2x" aria-hidden="true" ></i></a></div>
+    <a href="#portfolio"><i class="fa fa-angle-down fa-2x" aria-hidden="true" ></i></a></div>
 </div></div>
 
-<br> <br><br><br> 
+
 
 <!-- Container (Portfolio Section) -->
-<div id="portfolio" class="container-fluid text-center" style="background-color:rgb(124, 203, 240);opacity:0.8;"
+<div id="portfolio" class="container-fluid text-center" style="background-color:rgb(182, 226, 229);opacity:0.8; display:none;border-radius:25px"
 data-aos="zoom-in-up">
     <div data-aos="fade-up">
-  <br> 
+  <br> <br>
   <h2>Your Drafts</h2><br><br></div>
   
   <div data-aos="fade-up">
@@ -517,7 +580,25 @@ $(window).scroll(function(){
       }
       </script>
 <script> AOS.init();   </script>
+<script>
+function toggleFunction1() {
+  var x = document.getElementById("services");
+  var y = document.getElementById("portfolio");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.style.display = "none";
+  } 
+}</script>
 
+<script>
+  function toggleFunction2() {
+    var x = document.getElementById("services");
+    var y = document.getElementById("portfolio");
+    if (y.style.display === "none") {
+      y.style.display = "block";
+      x.style.display = "none";
+    } 
+  }</script>
    
 </body>
 <script src="/static/js/navbar.js"></script>

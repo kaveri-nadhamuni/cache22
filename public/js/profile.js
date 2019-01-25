@@ -1,26 +1,45 @@
 function postDOMObject(postJSON) {
   const card = document.createElement('div');
   card.setAttribute('id', postJSON._id);
+  card.innerHTML = '<br><br><br>'
   card.className = 'post card';
 
   const cardBody = document.createElement('div');
   cardBody.className = 'card-body';
+  cardBody.setAttribute('style','background-image:url(/static/images/notebook.jpg);');
+
   card.appendChild(cardBody);
 
-  const creatorSpan = document.createElement('div');
-  creatorSpan.className = 'story-creator card-title';
-  creatorSpan.innerHTML = postJSON.creator_name;
-  cardBody.appendChild(creatorSpan);
+  const rowSpan = document.createElement('div');
+  rowSpan.className = 'row ';
+  cardBody.appendChild(rowSpan);  
 
-  const contentSpan = document.createElement('p');
-  contentSpan.className = 'story-content card-text';
-  contentSpan.innerHTML = postJSON.content;
-  cardBody.appendChild(contentSpan);
+  const creatorSpan = document.createElement('span');
+  rowSpan.appendChild(creatorSpan);
 
-  const numberOfUpvotes = document.createElement('span');
-  numberOfUpvotes.className = 'upvote-number';
-  numberOfUpvotes.innerHTML = postJSON.upvotes;
-  card.appendChild(numberOfUpvotes);
+  const upvoteSpan = document.createElement('div');
+  upvoteSpan.className = 'col-sm-3 ';
+  upvoteSpan.innerHTML= '<br><br>'+ postJSON.upvotes + "  ";
+  creatorSpan.appendChild(upvoteSpan);
+
+  const imageSpan = document.createElement('img');
+  imageSpan.setAttribute('src','/static/images/heart.png');
+  upvoteSpan.appendChild(imageSpan);
+
+  const contentSpan = document.createElement('div');
+  contentSpan.className = 'col-sm-9';
+  contentSpan.setAttribute('style','background-image:url(/static/images/page.jpg);');
+
+  creatorSpan.appendChild(contentSpan);
+
+  const promptSpan = document.createElement('div');
+  promptSpan.innerHTML = '<b>'+'prompt'+'<b>';
+  contentSpan.appendChild(promptSpan);
+
+  const storySpan = document.createElement('div');
+  storySpan.innerHTML = '<br>'+postJSON.content+'<br><br>';
+  storySpan.setAttribute('style', 'text-align:left')
+  contentSpan.appendChild(storySpan); 
 
   return card;
 }
@@ -28,22 +47,43 @@ function postDOMObject(postJSON) {
 function draftDOMObject(draftJSON) {
   const card = document.createElement('div');
   card.setAttribute('id', draftJSON._id);
+  card.innerHTML = '<br><br><br>'
   card.className = 'post card';
 
   const cardBody = document.createElement('div');
   cardBody.className = 'card-body';
+  cardBody.setAttribute('style','background-image:url(/static/images/notebook.jpg);');
+
   card.appendChild(cardBody);
 
-  const creatorSpan = document.createElement('div');
-  creatorSpan.className = 'story-creator card-title';
-  creatorSpan.innerHTML = draftJSON.creator_name;
-  cardBody.appendChild(creatorSpan);
+  const rowSpan = document.createElement('div');
+  rowSpan.className = 'row';
+  cardBody.appendChild(rowSpan);  
 
-  const contentSpan = document.createElement('p');
-  contentSpan.className = 'story-content card-text';
-  contentSpan.innerHTML = draftJSON.content;
-  cardBody.appendChild(contentSpan);
+  const creatorSpan = document.createElement('span');
+  rowSpan.appendChild(creatorSpan);
 
+  const upvoteSpan = document.createElement('div');
+  upvoteSpan.className = 'col-sm-3';
+  upvoteSpan.innerHTML= '<br><br>'+ draftJSON.timestamp + "  ";
+  creatorSpan.appendChild(upvoteSpan);
+
+
+  const contentSpan = document.createElement('div');
+  contentSpan.className = 'col-sm-9';
+  contentSpan.setAttribute('style','background-image:url(/static/images/page.jpg);');
+  creatorSpan.appendChild(contentSpan);
+
+  const promptSpan = document.createElement('div');
+  promptSpan.innerHTML = '<b>'+'prompt'+'<b>';
+  contentSpan.appendChild(promptSpan);
+
+  const storySpan = document.createElement('div');
+  storySpan.innerHTML = '<br>'+draftJSON.content+'<br><br>';
+  storySpan.setAttribute('style', 'text-align:left')
+  contentSpan.appendChild(storySpan); 
+
+  return card;
   return card;
 }
 
@@ -52,17 +92,17 @@ function draftDOMObject(draftJSON) {
 
 function renderUserData(user) {
     // rendering name
-	const nameContainer = document.getElementById('name-container');
-	nameContainer.innerText = user.creator_name;
-	const bioContainer = document.getElementById('bio-container');
-	bioContainer.innerText = user.bio;
+  const nameContainer = document.getElementById('name-container');
+  nameContainer.innerText = user.creator_name;
+  const bioContainer = document.getElementById('bio-container');
+  bioContainer.innerText = user.bio;
 
-	// rendering profile image
-	/*const profileImage = document.getElementById('profile-image');
-	profileImage.style = 'background-image:url(https://i.pinimg.com/736x/98/e0/7d/98e07decc7c1ca58236995de3567e46a--cat-shirts-kitties-cutest.jpg)';*/
+  // rendering profile image
+  /*const profileImage = document.getElementById('profile-image');
+  profileImage.style = 'background-image:url(https://i.pinimg.com/736x/98/e0/7d/98e07decc7c1ca58236995de3567e46a--cat-shirts-kitties-cutest.jpg)';*/
 
-	// rendering total upvotes
-	/*const latestPostCard = document.getElementById('latest-post-card');
+  // rendering total upvotes
+  /*const latestPostCard = document.getElementById('latest-post-card');
 
   const creatorSpan = document.createElement('a');
   creatorSpan.className = 'story-creator card-title';
@@ -70,8 +110,8 @@ function renderUserData(user) {
   creatorSpan.setAttribute('href', '/u/profile?'+user._id);
   latestPostCard.appendChild(creatorSpan);
 
-	const latestPost = document.createElement('p');
-	latestPost.className = 'story-content card-text';
+  const latestPost = document.createElement('p');
+  latestPost.className = 'story-content card-text';
   latestPost.innerHTML = user.last_post;
   latestPostCard.appendChild(latestPost);*/ //copied and pasted from catbook
 }
@@ -127,7 +167,8 @@ function main() {
   const postDummy = {
     creator_id: "12345667",
     creator_name: "anonnnymous",
-    content: "this is my story",
+    content: "this is my story:The following list of cat breeds includes only domestic cat breeds and domestic × wild hybrids. The list includes established breeds recognized by various cat registries, new and experimental breeds, landraces being established as standardized breeds, distinct domestic populations not being actively developed, and lapsed (extinct) Inconsistency in breed classification and naming among registries means that an individual animal may be considered different breeds by different registries (though not necessarily eligible for registry in them all, depending on its exact ancestry). ",
+
     upvotes: 3,
     timestamp: "0:0:0"
   };
@@ -143,7 +184,7 @@ function main() {
   const draftDummy = {
     creator_id: "12233445",
     creator_name: "anonymous1",
-    content: "This is my draft",
+    content:"this is my story:The following list of cat breeds includes only domestic cat breeds and domestic × wild hybrids. The list includes established breeds recognized by various cat registries, new and experimental breeds, landraces being established as standardized breeds, distinct domestic populations not being actively developed, and lapsed (extinct) Inconsistency in breed classification and naming among registries means that an individual animal may be considered different breeds by different registries (though not necessarily eligible for registry in them all, depending on its exact ancestry). ",
     timestamp: "1:0:0"
   };
 
