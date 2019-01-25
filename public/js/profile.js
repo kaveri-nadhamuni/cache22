@@ -6,7 +6,6 @@ function postDOMObject(postJSON) {
 
   const cardBody = document.createElement('div');
   cardBody.className = 'card-body';
-  cardBody.innerHTML = '<br>'
   cardBody.setAttribute('style','border-style:groove;border-color:plum;border-radius: 25px;');
 
   card.appendChild(cardBody);
@@ -30,6 +29,8 @@ function postDOMObject(postJSON) {
 
   const contentSpan = document.createElement('div');
   contentSpan.className = 'col-sm-8';
+  contentSpan.setAttribute('style','background-image:url(/static/images/page.jpg);border-radius:25px');
+
   creatorSpan.appendChild(contentSpan);
 
   const promptSpan = document.createElement('div');
