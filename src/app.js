@@ -70,7 +70,7 @@ app.use(function(err, req, res, next){
 });
 
 //defines what port server is listening on 
-const port = 3000;
+const port = process.env.PORT || 3000;
 const server = http.Server(app);
 server.listen(port, function() {
     console.log('Server listening on port: ' + port); //function executed when server is started up
