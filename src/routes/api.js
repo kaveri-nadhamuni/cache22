@@ -116,8 +116,22 @@ router.post('/upvote', connect.ensureLoggedIn(), function(req,res) {
 
 })
 
+<<<<<<< HEAD
 router
 Prompt.findone({req.query.date})
+=======
+router.post('/prompt', function(req,res){
+    const newPrompt = new Prompt ({
+        'prompt': req.body.prompt,
+        'timestamp': req.body.timestamp,
+    });
+
+    newPrompt.save(function(err,prompt){
+        if (err) console.log(err);
+    });
+    res.send({});
+});
+>>>>>>> 114ecb27239567a6ae784fb7d8f0ed4d6a594cda
 
 
 module.exports = router;
