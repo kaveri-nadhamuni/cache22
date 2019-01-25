@@ -6,7 +6,7 @@ function postDOMObject(postJSON) {
 
   const cardBody = document.createElement('div');
   cardBody.className = 'card-body';
-  cardBody.setAttribute('style','border-style:groove;background-image:url(/static/images/notebook.jpg);');
+  cardBody.setAttribute('style','background-image:url(/static/images/notebook.jpg);');
 
   card.appendChild(cardBody);
 
@@ -15,11 +15,10 @@ function postDOMObject(postJSON) {
   cardBody.appendChild(rowSpan);  
 
   const creatorSpan = document.createElement('span');
-  creatorSpan.setAttribute('style','border:10px');
   rowSpan.appendChild(creatorSpan);
 
   const upvoteSpan = document.createElement('div');
-  upvoteSpan.className = 'col-sm-4 ';
+  upvoteSpan.className = 'col-sm-3 ';
   upvoteSpan.innerHTML= '<br><br>'+ postJSON.upvotes + "  ";
   creatorSpan.appendChild(upvoteSpan);
 
@@ -28,13 +27,13 @@ function postDOMObject(postJSON) {
   upvoteSpan.appendChild(imageSpan);
 
   const contentSpan = document.createElement('div');
-  contentSpan.className = 'col-sm-8';
+  contentSpan.className = 'col-sm-9';
   contentSpan.setAttribute('style','background-image:url(/static/images/page.jpg);');
 
   creatorSpan.appendChild(contentSpan);
 
   const promptSpan = document.createElement('div');
-  promptSpan.innerHTML = 'prompt';
+  promptSpan.innerHTML = '<b>'+'prompt'+'<b>';
   contentSpan.appendChild(promptSpan);
 
   const storySpan = document.createElement('div');
@@ -53,7 +52,7 @@ function draftDOMObject(draftJSON) {
 
   const cardBody = document.createElement('div');
   cardBody.className = 'card-body';
-  cardBody.setAttribute('style','border-style:groove;background-image:url(/static/images/notebook.jpg);');
+  cardBody.setAttribute('style','background-image:url(/static/images/notebook.jpg);');
 
   card.appendChild(cardBody);
 
@@ -65,18 +64,18 @@ function draftDOMObject(draftJSON) {
   rowSpan.appendChild(creatorSpan);
 
   const upvoteSpan = document.createElement('div');
-  upvoteSpan.className = 'col-sm-4';
+  upvoteSpan.className = 'col-sm-3';
   upvoteSpan.innerHTML= '<br><br>'+ draftJSON.timestamp + "  ";
   creatorSpan.appendChild(upvoteSpan);
 
 
   const contentSpan = document.createElement('div');
-  contentSpan.className = 'col-sm-8';
+  contentSpan.className = 'col-sm-9';
   contentSpan.setAttribute('style','background-image:url(/static/images/page.jpg);');
   creatorSpan.appendChild(contentSpan);
 
   const promptSpan = document.createElement('div');
-  promptSpan.innerHTML = 'prompt';
+  promptSpan.innerHTML = '<b>'+'prompt'+'<b>';
   contentSpan.appendChild(promptSpan);
 
   const storySpan = document.createElement('div');
