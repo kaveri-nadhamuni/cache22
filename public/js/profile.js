@@ -6,12 +6,12 @@ function postDOMObject(postJSON) {
 
   const cardBody = document.createElement('div');
   cardBody.className = 'card-body';
-  cardBody.setAttribute('style','border-style:groove;border-color:plum;border-radius: 25px;');
+  cardBody.setAttribute('style','border-style:groove;background-image:url(/static/images/notebook.jpg);');
 
   card.appendChild(cardBody);
 
   const rowSpan = document.createElement('div');
-  rowSpan.className = 'row';
+  rowSpan.className = 'row ';
   cardBody.appendChild(rowSpan);  
 
   const creatorSpan = document.createElement('span');
@@ -19,7 +19,7 @@ function postDOMObject(postJSON) {
   rowSpan.appendChild(creatorSpan);
 
   const upvoteSpan = document.createElement('div');
-  upvoteSpan.className = 'col-sm-4';
+  upvoteSpan.className = 'col-sm-4 ';
   upvoteSpan.innerHTML= '<br><br>'+ postJSON.upvotes + "  ";
   creatorSpan.appendChild(upvoteSpan);
 
@@ -29,13 +29,12 @@ function postDOMObject(postJSON) {
 
   const contentSpan = document.createElement('div');
   contentSpan.className = 'col-sm-8';
-  contentSpan.setAttribute('style','background-image:url(/static/images/page.jpg);border-radius:25px');
+  contentSpan.setAttribute('style','background-image:url(/static/images/page.jpg);');
 
   creatorSpan.appendChild(contentSpan);
 
   const promptSpan = document.createElement('div');
   promptSpan.innerHTML = 'prompt';
-  promptSpan.setAttribute('style', 'font-size:32px');
   contentSpan.appendChild(promptSpan);
 
   const storySpan = document.createElement('div');
@@ -54,8 +53,7 @@ function draftDOMObject(draftJSON) {
 
   const cardBody = document.createElement('div');
   cardBody.className = 'card-body';
-  cardBody.innerHTML = '<br>'
-  cardBody.setAttribute('style','border-style:groove;border-color:cadetblue;border-radius: 25px;');
+  cardBody.setAttribute('style','border-style:groove;background-image:url(/static/images/notebook.jpg);');
 
   card.appendChild(cardBody);
 
@@ -74,11 +72,11 @@ function draftDOMObject(draftJSON) {
 
   const contentSpan = document.createElement('div');
   contentSpan.className = 'col-sm-8';
+  contentSpan.setAttribute('style','background-image:url(/static/images/page.jpg);');
   creatorSpan.appendChild(contentSpan);
 
   const promptSpan = document.createElement('div');
   promptSpan.innerHTML = 'prompt';
-  promptSpan.setAttribute('style', 'font-size:32px');
   contentSpan.appendChild(promptSpan);
 
   const storySpan = document.createElement('div');
