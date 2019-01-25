@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const UserModelSchema = new mongoose.Schema({
     googleid: String, //is creator_id same as googleid
-    creator_name: String,
+    name: String,
     bio: String,
     stories: String,
     upvotes: String

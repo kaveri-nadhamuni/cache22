@@ -154,10 +154,12 @@ function main() {
     timestamp: "1:0:0"
   };
 
+  let dummyPostArr = [postDummy, postDummy2];
+  let dummyDraftArr = [draftDummy, draftDummy2]; 
   renderUserData(dummyUser);
   renderNavBar(dummyUser);
-  postDOMObject(postDummy);
-  draftDOMObject(draftDummy);
+  renderUserPosts(dummyPostArr);
+  renderUserDrafts(dummyDraftArr);
 }
 
 main();
