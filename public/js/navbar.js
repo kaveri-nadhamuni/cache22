@@ -66,6 +66,7 @@ function renderNavBar(user, userSubmit) { //will need to define userSubmit as a 
     if (user._id !== undefined && userSubmit) {
         navbarDiv.appendChild(addDropDownMenu(user));
         //code for adding profile to navBar
+        console.log("user id defined & userSubmit true");
         
     }
     else if (user._id !== undefined){
@@ -73,6 +74,7 @@ function renderNavBar(user, userSubmit) { //will need to define userSubmit as a 
     }
     else {
         navbarDiv.appendChild(renderLoginButton());
+        console.log("reached login button");
     }
 }
 

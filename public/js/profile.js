@@ -118,7 +118,7 @@ function main() {
 });*/
 
 
-  const dummyUser = {
+  /*const dummyUser = {
     _id: 'anonid',
     name: 'Anonymous-test',
     bio: 'Anon was here',
@@ -152,7 +152,7 @@ function main() {
     creator_name: "anonymous2",
     content: "This is my draft",
     timestamp: "1:0:0"
-  };
+  };*/
 
   let dummyPostArr = [postDummy, postDummy2];
   let dummyDraftArr = [draftDummy, draftDummy2]; 

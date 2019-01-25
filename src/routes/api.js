@@ -8,6 +8,8 @@ const Draft = require('../models/draft');
 const router = express.Router();
 
 router.get('/whoami', function(req,res) {
+    console.log("this is the user");
+    console.log(req.user);
     if(req.isAuthenticated()){
         res.send(req.user);
         //test
@@ -113,6 +115,9 @@ router.post('/upvote', connect.ensureLoggedIn(), function(req,res) {
       });
 
 })
+
+router
+Prompt.findone({req.query.date})
 
 
 module.exports = router;

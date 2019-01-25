@@ -69,27 +69,28 @@ function renderButtons(user) {
 function main() {
 
 userSubmitStatus = false;
-  /*get('api/whoami', {}, function(user) {
+  get('/api/whoami', {}, function(user) {
     console.log(user);
     //test
     if (user._id !== undefined){
         console.log("user defined");
     }
     else {
-        console.log("user undefined")
+        console.log("user undefined");
     }
-    });*/
+    
 
 
-    const user = {
+    /*const user = {
         _id: 'anonid',
         name: 'Anonymous',
         bio: 'Anon was here',
-      };
+      };*/
 
     console.log("api/whoami success");
     renderNavBar(user, userSubmitStatus);
     renderButtons(user);
+});
   
 }
 

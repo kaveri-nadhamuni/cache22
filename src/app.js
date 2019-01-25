@@ -1,79 +1,77 @@
-const http  = require('http');
+// libraries
+const http = require('http');
 const bodyParser = require('body-parser');
 const express = require('express');
 const session = require('express-session');
 
-
-//local dependencies
-const views  = require('./routes/views')
+// local dependencies
 const db = require('./db');
+const passport = require('./passport');
+const views = require('./routes/views');
 const api = require('./routes/api');
-const passport = require('./passport')
 
-//initializes express app
+
+// initialize express app
 const app = express();
 
 // set POST request body parser
-/*app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());*/
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // set up sessions
 app.use(session({
-    secret: 'session-secret',
-    resave: 'false',
-    saveUninitialized: 'true'
-  }));
+  secret: 'session-secret',
+  resave: 'false',
+  saveUninitialized: 'true'
+}));
 
-//set routes
-app.use('/', views);
-app.use('/api', api);
-app.use('/static', express.static('public'));
-
-//passport
+// hook up passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-//authentication
-app.get('/auth/google', passport.authenticate('google', {scope: ['profile'] }));
+// authentication routes
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
 
 app.get(
-    '/auth/google/callback',
-    passport.authenticate(
-      'google',
-      { failureRedirect: '/login' }
-    ),
-    function(req, res) {
-      res.redirect('/');
-    }
-  );
-  
-  app.get('/logout', function(req, res) {
-    req.logout();
+  '/auth/google/callback',
+  passport.authenticate(
+    'google',
+    { failureRedirect: '/login' }
+  ),
+  function(req, res) {
     res.redirect('/');
-  });
+  }
+);
 
-//404 route - access route that does not exist
-app.use(function(req, res, next) {
-    const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-})
-
-
-//route error handler
-app.use(function(err, req, res, next){
-    res.status(err.status || 500);
-    res.send({
-        status: err.status,
-        message: err.message,
-    });
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
 });
 
-//defines what port server is listening on 
-const port = 3000;
+// set routes
+app.use('/', views);
+app.use('/api', api );
+app.use('/static', express.static('public'));
+
+// 404 route
+app.use(function(req, res, next) {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// route error handler
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.send({
+    status: err.status,
+    message: err.message,
+  });
+});
+
+// port config
+const port = 3000; // config variable
 const server = http.Server(app);
 server.listen(port, function() {
-    console.log('Server listening on port: ' + port); //function executed when server is started up
+  console.log('Server running on port: ' + port);
 });
-
-
