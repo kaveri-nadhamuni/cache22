@@ -68,7 +68,14 @@ function renderButtons(user) {
 
 function renderPrompt(prompt) {
     const promptDiv = document.getElementById("prompt-container");
-    promptDiv.innerHTML = prompt;
+    promptDiv.innerHTML = prompt.prompt;
+    
+    const socket =io();
+    socket.on('prompt', function(prompt){
+        const promptDiv = document.getElementById("prompt-container");
+        promptDiv.innerHTML = prompt.prompt;
+    });
+   
 }
 
 
@@ -84,14 +91,14 @@ userSubmitStatus = false;
         else {
             console.log("user undefined");
         }   
-
-        console.log("api/whoami success");
         renderNavBar(user, userSubmitStatus);
         renderButtons(user);
     });
 
     get('/api/getprompt', {}, function(prompt){
+        console.log("this is the get prompt:" + prompt.prompt);
         renderPrompt(prompt);
+
 });
   
 }

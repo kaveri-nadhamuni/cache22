@@ -3,6 +3,7 @@ const http = require('http');
 const bodyParser = require('body-parser');
 const express = require('express');
 const session = require('express-session');
+const socketio = require('socket.io');
 
 // local dependencies
 const db = require('./db');
@@ -74,4 +75,12 @@ const port = process.env.PORT || 3000;
 const server = http.Server(app);
 server.listen(port, function() {
   console.log('Server running on port: ' + port);
+});
+
+//configure socket.io
+const io = socketio(server);
+app.set('socketio', io);
+
+io.on('connection', function(socket){
+  console.log('a user connected');
 });

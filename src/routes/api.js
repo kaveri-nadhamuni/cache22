@@ -120,17 +120,21 @@ router.post('/upvote', connect.ensureLoggedIn(), function(req,res) {
 router.post('/prompt', function(req,res){
     const newPrompt = new Prompt ({
         'prompt': req.body.prompt,
-        'timestamp': req.body.timestamp, //may comment out
+        //'timestamp': req.body.timestamp, //may comment out
     });
 
     newPrompt.save(function(err,prompt){
+        const io = req.app.get('socketio');
+        io.emit('prompt', prompt);
+
         if (err) console.log(err);
     });
+    
     res.send({});
 });
 
 router.get('/getprompt', function(req,res){
-    Prompt.findOne({}, {sort:{$natural: -1}}, function(err, prompt){
+    Prompt.findOne().sort({$natural:-1}).exec(function(err, prompt){
         res.send(prompt);
     })
 });

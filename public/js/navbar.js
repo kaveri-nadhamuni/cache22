@@ -42,10 +42,14 @@ function addDropDownMenu(user) {
     dropMenu.appendChild(menuLogoutItem);
 
     const menuLogoutSpan = document.createElement('a');
-    menuLogoutSpan.href = '/logout';
-    menuLogoutSpan.className = "logout-tab"
-    menuLogoutSpan.setAttribute("data-toggle","modal");
-    menuLogoutSpan.setAttribute("data-target","#logoutModal");
+    //menuLogoutSpan.href = "#logoutModal";
+    //menuLogoutSpan.href = '/logout';
+    menuLogoutSpan.className = "logout-tab";
+    //$('.menuLogoutSpan').attr("data-toggle","modal");
+    //$('.menuLogoutSpan').attr("data-target","#logoutModal");
+    //menuLogoutSpan.setAttribute("data-toggle","modal");
+    //menuLogoutSpan.setAttribute("data-target","#logoutModal");
+    $("#logoutModal").modal()
     menuLogoutSpan.innerHTML = 'Logout';
     menuLogoutItem.appendChild(menuLogoutSpan);
 
