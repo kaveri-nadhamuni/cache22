@@ -6,36 +6,60 @@ const API_ENDPOINT_START = 'http://cache22.herokuapp.com';
 
 // Creates an html block for a story
 function postDOMObject(postJSON) {
-  const card = document.createElement('div');
+ const card = document.createElement('div');
   card.setAttribute('id', postJSON._id);
+  card.innerHTML = '<br><br><br>'
   card.className = 'post card';
 
   const cardBody = document.createElement('div');
   cardBody.className = 'card-body';
+  cardBody.setAttribute('style','background-image:url(/static/images/paper.jpg);');
+
   card.appendChild(cardBody);
 
-  const creatorSpan = document.createElement('div');
-  creatorSpan.className = 'story-creator card-title';
-  creatorSpan.innerHTML = postJSON.creator_name;
-  cardBody.appendChild(creatorSpan);
+  const rowSpan = document.createElement('div');
+  rowSpan.className = 'row ';
+  rowSpan.setAttribute('style','display:flex');
+  cardBody.appendChild(rowSpan);  
 
-  const contentSpan = document.createElement('p');
-  contentSpan.className = 'story-content card-text';
-  contentSpan.innerHTML = postJSON.content;
-  cardBody.appendChild(contentSpan);
+  
 
-  const numberOfUpvotes = document.createElement('span');
-  numberOfUpvotes.className = 'upvote-number';
-  numberOfUpvotes.innerHTML = postJSON.upvotes;
-  card.appendChild(numberOfUpvotes);
+  const upvoteSpan = document.createElement('div');
+  upvoteSpan.className = 'col-sm-3 ';
+  upvoteSpan.innerHTML= '<br>'+ postJSON.creator_name +'<br><br>'+ postJSON.upvotes + "  " + 'upvotes';
+  rowSpan.appendChild(upvoteSpan);
 
 
-  const upvoteButton = document.createElement('button');
-  upvoteButton.innerText = 'Upvote';
-  upvoteButton.className = 'upvote-button(postJSON)';
-  upvoteButton.addEventListener('click', submitVoteHandler(postJSON));
-  card.appendChild(upvoteButton);
+  const contentSpan = document.createElement('div');
+  contentSpan.className = 'col-sm-9';
+  contentSpan.setAttribute('style','background-image:url(/static/images/page.jpg);');
+
+  rowSpan.appendChild(contentSpan);
+
+  const buttonSpan = document.createElement('button');
+  buttonSpan.setAttribute('style','background:  transparent; border-width: 0px');
+  buttonSpan.innerHTML = '<br><br>'+'<img src="/static/images/hearta.png">' + '<br><br>';
+  buttonSpan.addEventListener('click',submitVoteHandler(postJSON));
+  const x = postJSON.creator_id;
+  buttonSpan.setAttribute('onclick','changePic(this)');
+  upvoteSpan.appendChild(buttonSpan);
+    
+
+  const promptSpan = document.createElement('div');
+  promptSpan.innerHTML = '<b>'+'prompt'+'<b>';
+  contentSpan.appendChild(promptSpan);
+
+  const storySpan = document.createElement('div');
+  storySpan.innerHTML = '<br>'+postJSON.content+'<br><br>';
+  storySpan.setAttribute('style', 'text-align:left')
+  contentSpan.appendChild(storySpan); 
+
   return card;
+}
+
+function changePic(e){
+    e.innerHTML = '<br><br>'+'<img src="/static/images/hearti.png">' +  '<br><br>';
+    e.disabled = true;
 }
 
 function submitVoteHandler(postJSON) {
