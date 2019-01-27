@@ -15,6 +15,7 @@ function addDropDownMenu(user) {
 
     const dropMenu = document.createElement('UL');
     dropMenu.className ='dropdown-menu';
+    dropMenu.setAttribute('style','background-color:rgb(123, 198, 233)');
     listItem.appendChild(dropMenu);
 
     //$(".dropdown-menu").append('<li><a href="/u/profile">Profile</a></li>');

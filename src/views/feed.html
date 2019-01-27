@@ -161,7 +161,7 @@
 }
 
   body {
-    background-image:url('images/bg4.jpeg');
+    background-image:url('/static/images/leather.jpg');
     background-attachment:fixed;
     font-family: 'Satisfy', cursive;
     font-size:24px;
@@ -306,96 +306,77 @@
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
 
+   
     <!-- Small modal -->
 <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-              <h4>Log Out <i class="fa fa-lock"></i></h4>
-            </div>
-            <div class="modal-body">
-              <p><i class="fa fa-question-circle"></i> Are you sure you want to log-out? <br /></p>
-              <div class="actionsBtns">
-                  <form action="/logout" method="post">
-                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                      <button onclick="location.href='index.html'" type="button" class="btn btn-default">
-                        Logout</button>
-                          <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  </form>
-              </div>
-            </div>
-          </div>
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4>Log Out <i class="fa fa-lock"></i></h4>
+      </div>
+      <div class="modal-body">
+        <p><i class="fa fa-question-circle"></i> Are you sure you want to log-out? <br /></p>
+        <div class="actionsBtns">
+            <form action="/logout" method="post">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <button onclick="location.href='index.html'" type="button" class="btn btn-default">
+                  Logout</button>
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </form>
         </div>
       </div>
-
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header navbar-left">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#myPage">Logo</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="indexlogsub.html">Home</a></li>
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">username
-            <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Profile</a></li>
-              <li><a href="index.html" data-toggle="modal" data-target="#logoutModal">logout</a></li>
-          </ul>
-      </ul>
     </div>
   </div>
-</nav>
-
-<div class="jumbotron text-center">
-  <h1>Website</h1> 
-  <br><br>
-  We specialize in blablabla <br><br><br><br> 
-      <div class="downArrow bounce text-center">
-      <a href="#about"><i class="fa fa-angle-down fa-2x" aria-hidden="true"></i></a></div>
 </div>
 
-<br><br><br><br>
-
+<nav class="navbar navbar-default navbar-fixed-top">
+<div class="container">
+<div class="navbar-header navbar-left">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>                        
+</button>
+<a class="navbar-brand" href="#myPage">Logo</a>
+</div>
+<div class="collapse navbar-collapse" id="myNavbar">
+<ul class="nav navbar-nav navbar-right">
+  <li><a href="indexlogsub.html">Home</a></li>
+  <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">username
+      <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Profile</a></li>
+        <li><a href="index.html" data-toggle="modal" data-target="#logoutModal">logout</a></li>
+    </ul>
+</ul>
+</div>
+</div>
+</nav>
 
 <!-- Container (Services Section) -->
-<div id="services" class="container-fluid text-center" style="background-color:rgb(235, 229, 144);opacity:0.8;"
-data-aos="zoom-in-up">
-<div class="conatiner">
+<div id="services" class="container-fluid text-center" data-aos="zoom-in-up">
+<div class="container">
     <br> <br>
-    <div data-aos="fade-up"><h2>Prompt</h2></div><br>
-    <h4 class="text-center">
-      <div data-aos="fade-up" id = "prompt-container">
-        Todays prompt - example a Hogwarts professor discusses theory of relativity with a dimunitive barmaid at 
-        three broomsticks
-        <!--insert API generated prompt here -->
-      </div>
-    </h4>
-  <br> <br> <br> <br>
+    <div data-aos="fade-up"><h2 style="color:lavender">Today's Feed</h2></div><br>
+    
   <div data-aos="fade-up">
-    <div class="form-control" id = "today-feed-container">
-      <!-- today's posts are inserted here -->
-    </div> 
+  <div  id="today-feed-container">
+    <!--user story from database inserted here-->
+  </div> </div><br><br>
+  <div data-aos="fade-up"> 
+      <button id="btnShow1">Next Story</button>
   </div>
-  <br><br>
-  <div data-aos="fade-up">
-  
-      <button id="btnShow1">Read Next Story</button>
-        
-        </div> </div></div>
-<br><br><br><br>
-  <div class="downArrow bounce text-center">
-        <a href="#about"><i class="fa fa-angle-up fa-2x " aria-hidden="true"></i></a></div>
-    </div> 
+  <br> <br> <br> <br>
+</div></div>
 
-
+<script>
+function changePic(n){
+    const ig = document.getElementById(n);
+    ig.setAttribute('src','/static/images/hearti.png');
+}
+</script>
 <script>
 $(document).ready(function(){
   // Add smooth scrolling to all links in navbar + footer link
@@ -466,6 +447,7 @@ $("#btnShow1").click(function(){
     $("#btnShow2").click(function(){
       $("#alert2").hide().show('medium');
     }); </script>
+    
 </body>
 <script src="/static/js/navbar.js"></script>
 <script src="/static/js/api.js"></script>
