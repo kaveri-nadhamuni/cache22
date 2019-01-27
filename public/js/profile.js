@@ -93,7 +93,7 @@ function draftDOMObject(draftJSON) {
 function renderUserData(user) {
     // rendering name
   const nameContainer = document.getElementById('name-container');
-  nameContainer.innerText = user.creator_name;
+  nameContainer.innerText = user.name;
   const bioContainer = document.getElementById('bio-container');
   bioContainer.innerText = user.bio;
 
@@ -117,7 +117,7 @@ function renderUserData(user) {
 }
 
 function renderUserPosts(postsArr) {
-  
+  console.log("renderUserPosts");
   const postsDiv = document.getElementById('user-story-container'); 
   for (let i = 0; i < postsArr.length; i++) {
     const currentPost = postsArr[i];
@@ -137,17 +137,17 @@ function renderUserDrafts(draftsArr) {
 //call get function that specifies all posts with creator_id that matches user._id
 
 function main() {
-  /*const profileId = window.location.search.substring(1);
+  const profileId = window.location.search.substring(1);
   get('/api/user', {'_id': profileId}, function(profileUser) {
-
-  
     renderUserData(profileUser);
   });
+
   get('/api/whoami', {}, function(user) {
     renderNavbar(user);
   });
 
-  get('/api/userposts', {'creator_id': user._id}, function(userPosts){
+  console.log(profileId);
+  get('/api/userposts', {'creator_id': profileId}, function(userPosts){
     renderUserPosts(userPosts);
   });
 
@@ -155,7 +155,7 @@ function main() {
     renderUserDrafts(userDrafts);
   });
 
-});*/
+}
 
 
   /*const dummyUser = {
@@ -195,12 +195,12 @@ function main() {
     timestamp: "1:0:0"
   };*/
 
-  let dummyPostArr = [postDummy, postDummy2];
+  /*let dummyPostArr = [postDummy, postDummy2];
   let dummyDraftArr = [draftDummy, draftDummy2]; 
   renderUserData(dummyUser);
   renderNavBar(dummyUser);
   renderUserPosts(dummyPostArr);
-  renderUserDrafts(dummyDraftArr);
-}
+  renderUserDrafts(dummyDraftArr);*/
+
 
 main();
