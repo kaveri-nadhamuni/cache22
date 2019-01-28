@@ -94,8 +94,7 @@ function renderUserData(user) {
     // rendering name
   const nameContainer = document.getElementById('name-container');
   nameContainer.innerText = user.name;
-  const bioContainer = document.getElementById('bio-container');
-  bioContainer.innerText = user.bio;
+  
 
   // rendering profile image
   /*const profileImage = document.getElementById('profile-image');
