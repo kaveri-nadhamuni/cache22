@@ -123,7 +123,8 @@ function getCurrentDate(){
     let current = new Date();
     let currentYearNum = current.getFullYear();
     let currentMonthNum = current.getMonth()+1;
-    let currentDateNum = current.getDate();
+    let currentDateNum = current.getDate(); 
+    //change number type to string type
     today = currentMonthNum + '/' + currentDateNum + '/' + currentYearNum;
     console.log(today);
     return today
@@ -151,11 +152,13 @@ function renderPrompt(prompt) {
    
 }
 
-dummyArr = [postDummy, postDummy2,postDummy3, postDummy4];
+//dummyArr = [postDummy, postDummy2,postDummy3, postDummy4];
+
 function main() {
+console.log("index main called");
 
     userSubmitStatus = false;
-        renderDOMPosts(dummyArr);
+        //renderDOMPosts(dummyArr);
         get('/api/whoami', {}, function(user) {
             console.log(user);
             //test
