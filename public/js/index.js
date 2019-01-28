@@ -1,6 +1,7 @@
 //configures the buttons on a newPost
 function newPostSubmitButton(user) {
   saveButton = document.createElement('button');
+  saveButton.setAttribute('style','border-radius:10px; border-width:0px; background-color:plum;padding: 15px 32px;');
   saveButton.setAttribute('id', 'btnShow1');
   saveButton.innerText = 'Submit';
   if(user._id !== undefined) {
@@ -22,6 +23,7 @@ function newPostSubmitButton(user) {
 function newPostSaveButton(user){
 
   draftButton = document.createElement('button');
+  draftButton.setAttribute('style','border-radius:10px;border-width:0px; background-color:plum;padding: 15px 32px;');
   draftButton.setAttribute('id', 'btnShow2');
   draftButton.innerText = 'Save To Drafts';
   if(user._id !== undefined) {
@@ -64,6 +66,9 @@ function saveDraftHandler() {
 function renderButtons(user) {
   const newPostSubmit = document.getElementById('btnPost');
   newPostSubmit.appendChild(newPostSubmitButton(user));
+  const spanCard = document.createElement('span');
+  spanCard.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;';
+  newPostSubmit.appendChild(spanCard);
   newPostSubmit.appendChild(newPostSaveButton(user));
 }
 

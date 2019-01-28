@@ -152,7 +152,44 @@
     transform: translateY(-15px);
   }
 }
-   
+.button {
+  border-radius: 4px;
+  background-color: #dda2e9;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: url(/static/images/book.png);
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}  
 .center {
      display: block;
      margin-left: auto;
@@ -366,7 +403,7 @@
     <!--user story from database inserted here-->
   </div> </div><br><br>
   <div data-aos="fade-up"> 
-      <button id="btnShow1">Next Story</button>
+    <button class="button"><span> Next &nbsp;&nbsp;&nbsp; </span></button>
   </div>
   <br> <br> <br> <br>
 </div></div>
