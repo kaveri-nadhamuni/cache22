@@ -89,9 +89,12 @@ function submitPostHandler() {
     currentPrompt = prompt.prompt;
   });
 
+  const currentDate = getCurrentDate();
+
   const input = {
       content: newPostInput.value,
       prompt: currentPrompt,
+      date: currentDate,
       upvotes: 0,
   };
 
@@ -105,12 +108,25 @@ function saveDraftHandler() {
     currentPrompt = prompt.prompt;
   });
 
+  const currentDate = getCurrentDate();
+
   const input = {
       content: newDraftInput.value,
       prompt: currentPrompt,
+      date: currentDate,
   };
 
   post('/api/draft', input);
+}
+
+function getCurrentDate(){
+    let current = new Date();
+    let currentYearNum = current.getFullYear();
+    let currentMonthNum = current.getMonth()+1;
+    let currentDateNum = current.getDate();
+    today = currentMonthNum + '/' + currentDateNum + '/' + currentYearNum;
+    console.log(today);
+    return today
 }
 
 function renderButtons(user) {

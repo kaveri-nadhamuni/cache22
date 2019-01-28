@@ -403,16 +403,14 @@
 data-aos="zoom-in-up">
 <div class="container">
     <br> <br>
-    <div data-aos="fade-up"><h2>Prompt</h2></div><br>
+    <div data-aos="fade-up"><h2>Prompt of the Day</h2></div>
     <h4 class="text-center">
       <div data-aos="fade-up" id = "prompt-container"></div>
     </h4>
-    <!--test button created here to test api generator-->
-    <button class = "testbtn" id = "testbtnID">click here to test</button>
-      <br> <br> <br> <br>
+      <br> 
       <button id="demo" class="btn-default" style="border-radius:25px"></button> <br><br><br>
   <div data-aos="fade-up">
-  <textarea class="form-control" id="post-container" name="comments" placeholder="Your Story" rows="10" cols="50" style="font-size:24px">
+  <textarea class="form-control" id="post-container" name="comments" placeholder="Start writing" rows="10" cols="50" style="font-size:24px">
   </textarea> </div><br><br>
   <div data-aos="fade-up"></div>
   
@@ -642,6 +640,7 @@ $("#btnShow1").click(function(){
           + minutes + "m &nbsp;&nbsp;&nbsp;" + seconds + "s &nbsp;&nbsp;";
         
           // If the count down is finished, write some text 
+<<<<<<< HEAD
           if (hours==0 && minutes==0 &&seconds==0){
         console.log('expire')
 	    //Added stuff
@@ -653,6 +652,12 @@ $("#btnShow1").click(function(){
 	    //var countDownDate = countDownDate + (h*60*60*1000);
 	
       }
+=======
+          if (hours==0 && minutes==0 && seconds===0){
+            console.log("new prompt should generate")
+            submitPromptHandler();
+          }
+>>>>>>> cb90eb43ea583f7dc769ba126d1898f70e49f911
         }, 1000);
         </script>  
 </body>

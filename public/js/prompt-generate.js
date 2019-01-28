@@ -20,10 +20,8 @@ function submitPromptHandler() {
     
 }
 
-/*var midnight = "0:00:00";
-var now = null;
-now = moment().format("H:mm:ss");
 
+<<<<<<< HEAD
 if (now === midnight){
     let promptText = httpGet();
 
@@ -81,8 +79,9 @@ function main () {
       submitPromptHandler();
     }
   }
+=======
+>>>>>>> cb90eb43ea583f7dc769ba126d1898f70e49f911
 
-  main();
 
 
 

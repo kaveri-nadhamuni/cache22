@@ -67,8 +67,8 @@ router.get('/posts', function(req, res) {
 
 //figure out timer
 router.get('/todayposts', function(req, res) {
-    Post.find({}, function(err, posts) {
-        res.send(posts);
+    Post.find({date: req.query.date}, function(err, todaysposts) {
+        res.send(todaysposts);
     });
 });
 

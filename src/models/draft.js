@@ -5,7 +5,7 @@ const DraftModelSchema = new mongoose.Schema({
     creator_name: String,
     prompt: String,
     content: String,
-    timestamp: String
+    date: String
 
 });
 
