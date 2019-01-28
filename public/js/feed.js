@@ -57,6 +57,12 @@ function postDOMObject(postJSON) {
   return card;
 }
 
+function renderFeedNavBar(user){
+    const nameDiv = document.getElementById("feed navbar name");
+    console.log(user.name);
+    nameDiv.innerHTML = user.name;
+}
+
 function changePic(e){
     e.innerHTML = '<br><br>'+'<img src="/static/images/hearti.png">' +  '<br><br>';
     e.disabled = true;
@@ -121,6 +127,7 @@ function renderPosts(postsArr) {
     function main()
     {
         renderPosts(dummyArr);
+        renderFeedNavBar(user);
     }
 
     main();
