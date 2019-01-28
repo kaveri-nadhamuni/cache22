@@ -417,6 +417,7 @@ data-aos="zoom-in-up">
   <div data-aos="fade-up"></div>
   
   <div id="btnPost">
+  
       <!--dynamic butons inserted here -->
   </div>
   <br> <br> <br> <br>
@@ -440,7 +441,7 @@ data-aos="zoom-in-up">
         <input type="text" id="datepicker" >
       
   <br> <br> <br> <br> <br> <br> <br> <br>
-
+<div id="hall-of-fame-container" class="container-fluid"></div>
 </div> 
 <div class="downArrow bounce text-center">
     <a href="#contact"><i class="fa fa-angle-down fa-2x" aria-hidden="true"></i></a></div>
@@ -522,13 +523,13 @@ data-aos="zoom-in-up">
     <div class="col-sm-7 slideanim">
       <div class="row">
         <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="name" placeholder="Name" type="text"  style="font-size:20px;background-image:url('/static/images/page1.jpg');" required>
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text"  style="font-size:20px;") required>
         </div>
         <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email"  style="font-size:20px;background-image:url('/static/images/page1.jpg');" type="email" required>
+          <input class="form-control" id="email" name="email" placeholder="Email"  style="font-size:20px;" type="email" required>
         </div> 
       </div> <br>
-      <textarea class="form-control" id="comments" name="comments" placeholder="Comments" rows="8"  style="font-size:20px;background-image:url('/static/images/page1.jpg');"></textarea><br>
+      <textarea class="form-control" id="comments" name="comments" placeholder="Comments" rows="8"  style="font-size:20px;"></textarea><br>
       <div class="row">
         <div class="col-sm-12 form-group">
           <button class="btn btn-default pull-right " type="submit"  style="font-size:20px">Submit</button>
@@ -641,9 +642,8 @@ $("#btnShow1").click(function(){
           + minutes + "m &nbsp;&nbsp;&nbsp;" + seconds + "s &nbsp;&nbsp;";
         
           // If the count down is finished, write some text 
-          if (hours==0 && minutes==0 && seconds==0){
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
+          if (hours==0 && minutes==0 &&seconds==0){
+        console.log('expire')
 	    //Added stuff
       var prompt = document.getElementById("prompt-container");
 	     var result = httpGet();

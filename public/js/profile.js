@@ -58,6 +58,7 @@ function draftDOMObject(draftJSON) {
 
   const rowSpan = document.createElement('div');
   rowSpan.className = 'row';
+  rowSpan.setAttribute('style','display:flex');
   cardBody.appendChild(rowSpan);  
 
   const creatorSpan = document.createElement('span');

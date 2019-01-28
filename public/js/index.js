@@ -1,3 +1,45 @@
+//Shows up hall of fame objects
+function postHallOfFameDOMObject(postJSON) {
+  const card = document.createElement('div');
+  card.setAttribute('id', postJSON._id);
+  card.innerHTML = '<br><br><br>'
+  card.className = 'post card';
+
+  const cardBody = document.createElement('div');
+  cardBody.className = 'card-body';
+  cardBody.setAttribute('style','background-image:url(/static/images/paper.jpg);');
+
+  card.appendChild(cardBody);
+
+  const rowSpan = document.createElement('div');
+  rowSpan.className = 'row ';
+  rowSpan.setAttribute('style','display:flex');
+  cardBody.appendChild(rowSpan);  
+
+  const upvoteSpan = document.createElement('div');
+  upvoteSpan.className = 'col-sm-3 ';
+  upvoteSpan.innerHTML= '<br>'+ postJSON.creator_name +'<br><br>'+ postJSON.upvotes + "  " + 'upvotes';
+  rowSpan.appendChild(upvoteSpan);
+
+
+  const contentSpan = document.createElement('div');
+  contentSpan.className = 'col-sm-9';
+  contentSpan.setAttribute('style','background-image:url(/static/images/page.jpg);');
+
+  rowSpan.appendChild(contentSpan);
+
+  const promptSpan = document.createElement('div');
+  promptSpan.innerHTML = '<b>'+'prompt'+'<b>';
+  contentSpan.appendChild(promptSpan);
+
+  const storySpan = document.createElement('div');
+  storySpan.innerHTML = '<br>'+postJSON.content+'<br><br>';
+  storySpan.setAttribute('style', 'text-align:left')
+  contentSpan.appendChild(storySpan); 
+
+  return card;
+}
+
 //configures the buttons on a newPost
 function newPostSubmitButton(user) {
   saveButton = document.createElement('button');
@@ -92,27 +134,28 @@ function renderPrompt(prompt) {
    
 }
 
-
+dummyArr = [postDummy, postDummy2,postDummy3, postDummy4];
 function main() {
 
-userSubmitStatus = false;
-    get('/api/whoami', {}, function(user) {
-        console.log(user);
-        //test
-        if (user._id !== undefined){
-            console.log("user defined");
-        }
-        else {
-            console.log("user undefined");
-        }   
-        renderNavBar(user, userSubmitStatus);
-        renderButtons(user);
-    });
-
-    get('/api/getprompt', {}, function(prompt){
-        renderPrompt(prompt);
-    });
-  
-}
-
+    userSubmitStatus = false;
+        renderDOMPosts(dummyArr);
+        get('/api/whoami', {}, function(user) {
+            console.log(user);
+            //test
+            if (user._id !== undefined){
+                console.log("user defined");
+            }
+            else {
+                console.log("user undefined");
+            }   
+            renderNavBar(user, userSubmitStatus);
+            renderButtons(user);
+        });
+    
+        get('/api/getprompt', {}, function(prompt){
+            renderPrompt(prompt);
+        });
+      
+    }
+    
 main();

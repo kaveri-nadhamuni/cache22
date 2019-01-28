@@ -67,16 +67,18 @@ function main () {
   
     // If the count down is finished, write some text 
     //if (distance<=0) {
-    if (hours==0 && minutes==0 && seconds==0){
-      clearInterval(x);
-      document.getElementById("demo").innerHTML = "EXPIRED";
+    if (/*hours==0 && minutes==0 &&*/ seconds===0){
+        console.log('happens')
+     clearInterval(x);
+      //document.getElementById("demo").innerHTML = "EXPIRED";
       //Added stuff
-    var prompt = document.getElementById("prompt-container");
-       var result = httpGet();
-     var resultTest = "test";
+    //var prompt = document.getElementById("prompt-container");
+       //var result = httpGet();
+     //var resultTest = "test";
     //prompt.innerHTML = result;
-     prompt.innerHTML = resultTest;
+     //prompt.innerHTML = resultTest;
       //var countDownDate = countDownDate + (h*60*60*1000);
+      submitPromptHandler();
     }
   }
 
