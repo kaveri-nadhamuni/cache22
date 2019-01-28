@@ -151,7 +151,7 @@ function main() {
     renderUserPosts(userPosts);
   });
 
-  get('/api/userdrafts', {'creator_id': user._id}, function(userDrafts){
+  get('/api/userdrafts', {'creator_id': profileId}, function(userDrafts){
     renderUserDrafts(userDrafts);
   });
 
