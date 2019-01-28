@@ -43,9 +43,13 @@ function newPostSaveButton(user){
 
 function submitPostHandler() {
   const newPostInput = document.getElementById('post-container');
+  get('/api/getprompt', {}, function(prompt){
+    currentPrompt = prompt.prompt;
+  });
 
   const input = {
       content: newPostInput.value,
+      prompt: currentPrompt,
       upvotes: 0,
   };
 
@@ -55,9 +59,13 @@ function submitPostHandler() {
 
 function saveDraftHandler() {
   const newDraftInput = document.getElementById('post-container');
+  get('/api/getprompt', {}, function(prompt){
+    currentPrompt = prompt.prompt;
+  });
 
   const input = {
       content: newDraftInput.value,
+      prompt: currentPrompt,
   };
 
   post('/api/draft', input);
@@ -103,8 +111,7 @@ userSubmitStatus = false;
 
     get('/api/getprompt', {}, function(prompt){
         renderPrompt(prompt);
-
-});
+    });
   
 }
 
