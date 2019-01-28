@@ -127,7 +127,10 @@ function renderPosts(postsArr) {
     function main()
     {
         renderPosts(dummyArr);
-        renderFeedNavBar(user);
+        get('/api/whoami', {}, function(user) {
+            renderFeedNavBar(user);
+          });
+        
     }
 
     main();

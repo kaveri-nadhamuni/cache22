@@ -6,7 +6,7 @@ const PostModelSchema = new mongoose.Schema({
     prompt: String,
     content: String,
     upvotes: Number,
-    timestamp: String
+    date: String
 
 });
 
