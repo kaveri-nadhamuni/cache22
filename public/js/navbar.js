@@ -44,13 +44,13 @@ function addDropDownMenu(user) {
 
     const menuLogoutSpan = document.createElement('a');
     //menuLogoutSpan.href = "#logoutModal";
-    //menuLogoutSpan.href = '/logout';
+    menuLogoutSpan.href = '/logout';
     menuLogoutSpan.className = "logout-tab";
     //$('.menuLogoutSpan').attr("data-toggle","modal");
     //$('.menuLogoutSpan').attr("data-target","#logoutModal");
     //menuLogoutSpan.setAttribute("data-toggle","modal");
     //menuLogoutSpan.setAttribute("data-target","#logoutModal");
-    $("#logoutModal").modal()
+    //$("#logoutModal").modal()
     menuLogoutSpan.innerHTML = 'Logout';
     menuLogoutItem.appendChild(menuLogoutSpan);
 
@@ -88,7 +88,6 @@ function renderNavBar(user, userSubmit) { //will need to define userSubmit as a 
     }
     else {
         navbarDiv.appendChild(renderLoginButton());
-        console.log("reached login button");
     }
 }
 

@@ -46,6 +46,7 @@ function submitPostHandler() {
 
   const input = {
       content: newPostInput.value,
+      upvotes: 0,
   };
 
   post('/api/post', input);
@@ -74,7 +75,7 @@ function renderButtons(user) {
 function renderPrompt(prompt) {
     const promptDiv = document.getElementById("prompt-container");
     promptDiv.innerHTML = prompt.prompt;
-    
+
     const socket =io();
     socket.on('prompt', function(prompt){
         const promptDiv = document.getElementById("prompt-container");
@@ -101,7 +102,6 @@ userSubmitStatus = false;
     });
 
     get('/api/getprompt', {}, function(prompt){
-        console.log("this is the get prompt:" + prompt.prompt);
         renderPrompt(prompt);
 
 });

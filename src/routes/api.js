@@ -74,7 +74,7 @@ router.get('/todayposts', function(req, res) {
 
 router.get('/userposts', function(req,res) {
     Post.find({creator_id: req.query.creator_id}, function(err, userposts){
-        res.send(user.posts);
+        res.send(userposts);
     })
 });
 
@@ -129,7 +129,7 @@ router.post('/prompt', function(req,res){
 
         if (err) console.log(err);
     });
-    
+
     res.send({});
 });
 
