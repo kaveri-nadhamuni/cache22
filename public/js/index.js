@@ -76,9 +76,10 @@ function saveDraftHandler() {
 function getCurrentDate(){
     let current = new Date();
     let currentYearNum = current.getFullYear();
-    let currentYear
-    let currentMonthNum = current.getMonth();
+    let currentMonthNum = current.getMonth()+1;
     let currentDateNum = current.getDate();
+    today = currentMonthNum + '/' + currentDateNum + '/' + currentYearNum;
+    return today
 
 }
 function renderButtons(user) {
