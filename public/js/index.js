@@ -63,6 +63,8 @@ function saveDraftHandler() {
     currentPrompt = prompt.prompt;
   });
 
+ 
+
   const input = {
       content: newDraftInput.value,
       prompt: currentPrompt,
@@ -71,6 +73,14 @@ function saveDraftHandler() {
   post('/api/draft', input);
 }
 
+function getCurrentDate(){
+    let current = new Date();
+    let currentYearNum = current.getFullYear();
+    let currentYear
+    let currentMonthNum = current.getMonth();
+    let currentDateNum = current.getDate();
+
+}
 function renderButtons(user) {
   const newPostSubmit = document.getElementById('btnPost');
   newPostSubmit.appendChild(newPostSubmitButton(user));

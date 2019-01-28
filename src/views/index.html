@@ -642,7 +642,7 @@ $("#btnShow1").click(function(){
         
           // If the count down is finished, write some text 
           if (hours==0 && minutes==0 && seconds==0){
-        clearInterval(x);
+        /*clearInterval(x);
         document.getElementById("demo").innerHTML = "EXPIRED";
 	    //Added stuff
       var prompt = document.getElementById("prompt-container");
@@ -650,7 +650,8 @@ $("#btnShow1").click(function(){
        var resultTest = "test";
       //prompt.innerHTML = result;
        prompt.innerHTML = resultTest;
-	    //var countDownDate = countDownDate + (h*60*60*1000);
+      //var countDownDate = countDownDate + (h*60*60*1000);*/
+      submitPromptHandler();
 	
       }
         }, 1000);

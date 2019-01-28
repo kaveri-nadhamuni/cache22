@@ -74,23 +74,18 @@ function submitVoteHandler(postJSON) {
 }
 
 // Makes API requests and calls helper functions
-function renderPosts(postsArr) {
-    /*const postsDiv = document.getElementById('today-feed-container');
-    get('/api/posts', {}, function(postsArr){
+function renderPosts(user) {
+    const postsDiv = document.getElementById('today-feed-container');
+    
+    get('/api/todaysposts', {}, function(postsArr){
         for (let i = 0; i < postsArr.length; i++) {
         const currentPost = postsArr[i];
         postsDiv.prepend(postDOMObject(currentPost, user));
         }
-    });*/
-
-    let postsDiv = document.getElementById("today-feed-container"); 
-    for (let i = 0; i < postsArr.length; i++) {
-        const currentPost = postsArr[i];
-        postsDiv.prepend(postDOMObject(currentPost));
-    }
+    });
 }
 
-    const postDummy = {
+    /*const postDummy = {
         creator_id: "12345667",
         creator_name: "anonnnymous",
         content: "this is my story:The following list of cat breeds includes only domestic cat breeds and domestic × wild hybrids. The list includes established breeds recognized by various cat registries, new and experimental breeds, landraces being established as standardized breeds, distinct domestic populations not being actively developed, and lapsed (extinct) Inconsistency in breed classification and naming among registries means that an individual animal may be considered different breeds by different registries (though not necessarily eligible for registry in them all, depending on its exact ancestry). ",
@@ -122,13 +117,13 @@ function renderPosts(postsArr) {
         timestamp: "1:0:0"
     };
 
-    dummyArr = [postDummy, postDummy2,postDummy3, postDummy4];
+    dummyArr = [postDummy, postDummy2,postDummy3, postDummy4];*/
 
     function main()
     {
-        renderPosts(dummyArr);
         get('/api/whoami', {}, function(user) {
             renderFeedNavBar(user);
+            renderPosts(user);
           });
         
     }
