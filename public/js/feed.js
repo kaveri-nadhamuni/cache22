@@ -76,8 +76,10 @@ function submitVoteHandler(postJSON) {
 // Makes API requests and calls helper functions
 function renderPosts(user) {
     const postsDiv = document.getElementById('today-feed-container');
-    
-    get('/api/todaysposts', {}, function(postsArr){
+
+    const currentDate = getCurrentDate();
+
+    get('/api/todaysposts', {'date': currentDate}, function(postsArr){
         for (let i = 0; i < postsArr.length; i++) {
         const currentPost = postsArr[i];
         postsDiv.prepend(postDOMObject(currentPost, user));
