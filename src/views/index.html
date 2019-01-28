@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- Theme Made By Cache 22 -->
-  <title>Bootstrap Theme Company Page</title>
+  <title>Promptly|Home</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-signin-client_id" content="830480139203-8orn4ab6l41q03u8mugt8n6erpttl7oj.apps.googleusercontent.com">
@@ -353,12 +353,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage">Promptly</a>
+      <a class="navbar-brand" href="#myPage"><span class="glyphicon glyphicon-pencil"></span>Promptly</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right" id="innerNavBar">
         <li><a href="#about" >About </a></li>
-        <li><a href="#services" >Prompt <img src="/static/images/locked.png"></a></li>
+        <li><a href="#services" >Prompt </a></li>
         <li><a href="#portfolio">Hall Of Fame</a></li>
         <li><a href="#contact">Contact Us</a></li>
       </ul>
@@ -367,9 +367,9 @@
 </nav>
 
 <div class="jumbotron text-center">
-  <h1>Website</h1> 
+  <h1>Promptly</h1> 
   <br><br>
-  We specialize in blablabla <br><br><br><br> 
+  Write away! <br><br><br><br> 
       <div class="downArrow bounce text-center">
       <a href="#about"><i class="fa fa-angle-down fa-2x" aria-hidden="true"></i></a></div>
 </div>
@@ -381,11 +381,11 @@
   <div class="container" data-aos="fade-up" >
     <div class="text-center" >
         <br> <br> <br>
-        <div class="row" data-aos="zoom-in"><h2>How to use</h2> </div><br> <br>
+        <div class="row" data-aos="zoom-in"><h2>Get Started</h2> </div><br> <br>
       <h3 style="text-align:center;">
-          <div class="row" data-aos="zoom-in"><i class="fas fa-pencil-alt" data-fa-transform="grow-6"></i>First step <br> <br></div>
-            <div class="row" data-aos="zoom-in"><i class="fas fa-pencil-alt" data-fa-transform="grow-6"></i> Second step <br> <br></div>
-            <div class="row" data-aos="zoom-in"><i class="fas fa-pencil-alt"data-fa-transform="grow-6"></i>Third step <br> <br></h3>
+          <div class="row" data-aos="zoom-in"><i class="fas fa-pencil-alt" data-fa-transform="grow-6"></i>Write your story based on the prompt <br> <br></div>
+            <div class="row" data-aos="zoom-in"><i class="fas fa-pencil-alt" data-fa-transform="grow-6"></i> Submit your story<br> <br></div>
+            <div class="row" data-aos="zoom-in"><i class="fas fa-pencil-alt"data-fa-transform="grow-6"></i>Enjoy reading others stories <br> <br></h3>
       </div>
 
     <br> <br>  
@@ -434,7 +434,7 @@ data-aos="zoom-in-up">
     <div data-aos="fade-up">
   <br> 
   <h2>Hall of Fame</h2><br><br>
-  <h4>What we have created</h4> <br><br>
+  <h4>Immortalized stories</h4> <br><br>
  
        Date : 
         <input type="text" id="datepicker" >
@@ -522,13 +522,13 @@ data-aos="zoom-in-up">
     <div class="col-sm-7 slideanim">
       <div class="row">
         <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="name" placeholder="Name" type="text"  style="font-size:20px" required>
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text"  style="font-size:20px;background-image:url('/static/images/page1.jpg');" required>
         </div>
         <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email"  style="font-size:20px" type="email" required>
+          <input class="form-control" id="email" name="email" placeholder="Email"  style="font-size:20px;background-image:url('/static/images/page1.jpg');" type="email" required>
         </div> 
       </div> <br>
-      <textarea class="form-control" id="comments" name="comments" placeholder="Comments" rows="8"  style="font-size:20px"></textarea><br>
+      <textarea class="form-control" id="comments" name="comments" placeholder="Comments" rows="8"  style="font-size:20px;background-image:url('/static/images/page1.jpg');"></textarea><br>
       <div class="row">
         <div class="col-sm-12 form-group">
           <button class="btn btn-default pull-right " type="submit"  style="font-size:20px">Submit</button>
@@ -615,37 +615,33 @@ $("#btnShow1").click(function(){
     $("#btnShow2").click(function(){
       $("#alert2").hide().show('medium');
     }); </script>
-<script>
-    // Set the date we're counting down to
-     var countDownDate = new Date("Jan 5, 2021 0:0:0").getTime();
-    
-    // Update the count down every 1 second
-    //var x = setInterval(function() {
-    
-      // Get todays date and time
-      var now = new Date().getTime();
-      //var midnight = "0:00:00";
-      //var now = null;
-      //now = moment().format("H:mm:ss");
-      
 
     
-      // Find the distance between now and the count down date
-      var distance = countDownDate - now;
-    
-      // Time calculations for days, hours, minutes and seconds
-      
-       var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-      // Display the result in the element with id="demo"
-      document.getElementById("demo").innerHTML = '&nbsp;&nbsp;'+hours + "h &nbsp;&nbsp;&nbsp;"
-      + minutes + "m &nbsp;&nbsp;&nbsp;" + seconds + "s &nbsp;&nbsp;";
-    
-      // If the count down is finished, write some text 
-      //if (distance<=0) {
-      if (hours==0 && minutes==0 && seconds==0){
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Jan 5, 2021 0:0:0").getTime();
+        
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+        
+          // Get todays date and time
+          var now = new Date().getTime();
+        
+          // Find the distance between now and the count down date
+          var distance = countDownDate - now;
+        
+          // Time calculations for days, hours, minutes and seconds
+          
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+          // Display the result in the element with id="demo"
+          document.getElementById("demo").innerHTML = '&nbsp;&nbsp;'+hours + "h &nbsp;&nbsp;&nbsp;"
+          + minutes + "m &nbsp;&nbsp;&nbsp;" + seconds + "s &nbsp;&nbsp;";
+        
+          // If the count down is finished, write some text 
+          if (hours==0 && minutes==0 && seconds==0){
         clearInterval(x);
         document.getElementById("demo").innerHTML = "EXPIRED";
 	    //Added stuff
@@ -657,7 +653,8 @@ $("#btnShow1").click(function(){
 	    //var countDownDate = countDownDate + (h*60*60*1000);
 	
       }
-    </script>     
+        }, 1000);
+        </script>  
 </body>
 
 <script src="/static/js/navbar.js"></script>

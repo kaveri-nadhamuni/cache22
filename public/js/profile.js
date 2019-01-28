@@ -6,7 +6,7 @@ function postDOMObject(postJSON) {
 
   const cardBody = document.createElement('div');
   cardBody.className = 'card-body';
-  cardBody.setAttribute('style','background-image:url(/static/images/notebook.jpg);');
+  cardBody.setAttribute('style','background-image:url(/static/images/paper.jpg);');
 
   card.appendChild(cardBody);
 
@@ -52,7 +52,7 @@ function draftDOMObject(draftJSON) {
 
   const cardBody = document.createElement('div');
   cardBody.className = 'card-body';
-  cardBody.setAttribute('style','background-image:url(/static/images/notebook.jpg);');
+  cardBody.setAttribute('style','background-image:url(/static/images/paper.jpg);');
 
   card.appendChild(cardBody);
 
@@ -94,8 +94,7 @@ function renderUserData(user) {
     // rendering name
   const nameContainer = document.getElementById('name-container');
   nameContainer.innerText = user.name;
-  const bioContainer = document.getElementById('bio-container');
-  bioContainer.innerText = user.bio;
+  
 
   // rendering profile image
   /*const profileImage = document.getElementById('profile-image');
