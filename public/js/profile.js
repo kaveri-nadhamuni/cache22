@@ -17,9 +17,14 @@ function postDOMObject(postJSON) {
   const creatorSpan = document.createElement('span');
   rowSpan.appendChild(creatorSpan);
 
+  const timeSpan = document.createElement('div');
+  timeSpan.className = 'date';
+  timeSpan.innerHTML = postJSON.date;
+  creatorSpan.appendChild(timeSpan);
+
   const upvoteSpan = document.createElement('div');
   upvoteSpan.className = 'col-sm-3 ';
-  upvoteSpan.innerHTML= '<br><br>'+ postJSON.upvotes + "  ";
+  upvoteSpan.innerHTML= '<br>'+ postJSON.upvotes + "  ";
   creatorSpan.appendChild(upvoteSpan);
 
   const imageSpan = document.createElement('img');
@@ -33,7 +38,7 @@ function postDOMObject(postJSON) {
   creatorSpan.appendChild(contentSpan);
 
   const promptSpan = document.createElement('div');
-  promptSpan.innerHTML = '<b>'+'prompt'+'<b>';
+  promptSpan.innerHTML = '<b>'+postJSON.prompt+'<b>';
   contentSpan.appendChild(promptSpan);
 
   const storySpan = document.createElement('div');
@@ -64,10 +69,10 @@ function draftDOMObject(draftJSON) {
   const creatorSpan = document.createElement('span');
   rowSpan.appendChild(creatorSpan);
 
-  const upvoteSpan = document.createElement('div');
-  upvoteSpan.className = 'col-sm-3';
-  upvoteSpan.innerHTML= '<br><br>'+ draftJSON.timestamp + "  ";
-  creatorSpan.appendChild(upvoteSpan);
+  const timeSpan = document.createElement('div');
+  timeSpan.className = 'col-sm-3';
+  timeSpan.innerHTML= '<br><br>'+ draftJSON.date + "  ";
+  creatorSpan.appendChild(timeSpan);
 
 
   const contentSpan = document.createElement('div');
@@ -76,7 +81,7 @@ function draftDOMObject(draftJSON) {
   creatorSpan.appendChild(contentSpan);
 
   const promptSpan = document.createElement('div');
-  promptSpan.innerHTML = '<b>'+'prompt'+'<b>';
+  promptSpan.innerHTML = '<b>'+draftJSON.prompt+'<b>';
   contentSpan.appendChild(promptSpan);
 
   const storySpan = document.createElement('div');
@@ -84,7 +89,6 @@ function draftDOMObject(draftJSON) {
   storySpan.setAttribute('style', 'text-align:left')
   contentSpan.appendChild(storySpan); 
 
-  return card;
   return card;
 }
 
@@ -94,7 +98,7 @@ function draftDOMObject(draftJSON) {
 function renderUserData(user) {
     // rendering name
   const nameContainer = document.getElementById('name-container');
-  nameContainer.innerText = user.name;
+  nameContainer.innerHTML = user.name;
   
 
   // rendering profile image
@@ -146,7 +150,8 @@ function main() {
     renderNavbar(user);
   });
 
-  console.log(profileId);
+  console.log("profileId from profile.js:" + profileId); //debugging test
+
   get('/api/userposts', {'creator_id': profileId}, function(userPosts){
     renderUserPosts(userPosts);
   });

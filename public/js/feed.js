@@ -25,6 +25,7 @@ function postDOMObject(postJSON) {
   
 
   const upvoteSpan = document.createElement('div');
+  upvoteSpan.setAttribute('id', 'upvote id')
   upvoteSpan.className = 'col-sm-3 ';
   upvoteSpan.innerHTML= '<br>'+ postJSON.creator_name +'<br><br>'+ postJSON.upvotes + "  " + 'upvotes';
   rowSpan.appendChild(upvoteSpan);
@@ -39,7 +40,8 @@ function postDOMObject(postJSON) {
   const buttonSpan = document.createElement('button');
   buttonSpan.setAttribute('style','background:  transparent; border-width: 0px');
   buttonSpan.innerHTML = '<br><br>'+'<img src="/static/images/hearta.png">' + '<br><br>';
-  buttonSpan.addEventListener('click',submitVoteHandler(postJSON));
+  buttonSpan.addEventListener('click',submitVoteHandler.bind(this,postJSON)); //updates votes in model
+  //buttonSpan.addEventListener('click', updateVote.bind(this,postJSON) ) //user visually sees button update
   const x = postJSON.creator_id;
   buttonSpan.setAttribute('onclick','changePic(this)');
   upvoteSpan.appendChild(buttonSpan);
@@ -58,9 +60,13 @@ function postDOMObject(postJSON) {
 }
 
 function renderFeedNavBar(user){
-    const nameDiv = document.getElementById("feed navbar name");
+    const nameSpan = document.getElementById("feed navbar name");
     console.log(user.name);
-    nameDiv.innerHTML = user.name;
+    nameSpan.innerHTML = user.name;
+
+    const profileSpan = document.getElementById("feed navbar profile");
+    profileSpan.href = '/u/profile?'+user._id;
+
 }
 
 function changePic(e){
@@ -68,66 +74,45 @@ function changePic(e){
     e.disabled = true;
 }
 
+function updateVote(postJSON) {
+    const upvoteSpan = document.getElementById('upvote id');
+    upvoteSpan.innerHTML= '<br>'+ postJSON.creator_name +'<br><br>'+ (postJSON.upvotes+1) + "  " + 'upvotes'
+}
+
 function submitVoteHandler(postJSON) {
-    post('/api/upvote', postJSON)
+    /*post('/api/upvote', postJSON, function(post){
+        const upvoteSpan = document.getElementById('upvote id');
+        upvoteSpan.innerHTML= '<br>'+ post.creator_name +'<br><br>'+ (post.upvotes) + "  " + 'upvotes'
+    })*/
+    post('/api/upvote', postJSON);
     // code to increase the number of upvotes in database    
 }
 
 // Makes API requests and calls helper functions
-function renderPosts(user) {
+function renderPosts() {
     const postsDiv = document.getElementById('today-feed-container');
+    console.log("renderPosts called");
 
     const currentDate = getCurrentDate();
+    console.log(currentDate);
 
     get('/api/todaysposts', {'date': currentDate}, function(postsArr){
         for (let i = 0; i < postsArr.length; i++) {
         const currentPost = postsArr[i];
-        postsDiv.prepend(postDOMObject(currentPost, user));
+        postsDiv.prepend(postDOMObject(currentPost));
         }
     });
 }
 
-    /*const postDummy = {
-        creator_id: "12345667",
-        creator_name: "anonnnymous",
-        content: "this is my story:The following list of cat breeds includes only domestic cat breeds and domestic × wild hybrids. The list includes established breeds recognized by various cat registries, new and experimental breeds, landraces being established as standardized breeds, distinct domestic populations not being actively developed, and lapsed (extinct) Inconsistency in breed classification and naming among registries means that an individual animal may be considered different breeds by different registries (though not necessarily eligible for registry in them all, depending on its exact ancestry). ",
-        upvotes: 3,
-        timestamp: "0:0:0"
-    };
-    
-    const postDummy2 = {
-        creator_id: "13434533",
-        creator_name: "anonnnymous2",
-        content: "this is my story2",
-        upvotes: 3,
-        timestamp: "0:0:0"
-    };
-    
-    const postDummy3 = {
-        creator_id: "12233445",
-        creator_name: "anonymous1",
-        content:"this is my story:The following list of cat breeds includes only domestic cat breeds and domestic × wild hybrids. The list includes established breeds recognized by various cat registries, new and experimental breeds, landraces being established as standardized breeds, distinct domestic populations not being actively developed, and lapsed (extinct) Inconsistency in breed classification and naming among registries means that an individual animal may be considered different breeds by different registries (though not necessarily eligible for registry in them all, depending on its exact ancestry). ",
-        upvotes: 2,
-        timestamp: "1:0:0"
-    };
-    
-    const postDummy4 = {
-        creator_id: "12233445",
-        creator_name: "anonymous2",
-        content: "This is my draft",
-        upvotes: 4,
-        timestamp: "1:0:0"
-    };
-
-    dummyArr = [postDummy, postDummy2,postDummy3, postDummy4];*/
 
     function main()
     {
         get('/api/whoami', {}, function(user) {
-            renderFeedNavBar(user);
-            renderPosts(user);
-          });
-        
+            if(user._id !== undefined){
+                renderFeedNavBar(user);
+                renderPosts();
+            }
+        });
     }
 
     main();

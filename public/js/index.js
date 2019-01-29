@@ -40,14 +40,14 @@ function postHallOfFameDOMObject(postJSON) {
   return card;
 }
 
-//configures the buttons on a newPost
+//creates HTML element for a Submit button that executes based on status of user
 function newPostSubmitButton(user) {
   saveButton = document.createElement('button');
   saveButton.setAttribute('style','border-radius:10px; border-width:0px; background-color:plum;padding: 15px 32px;');
   saveButton.setAttribute('id', 'btnShow1');
   saveButton.innerText = 'Submit';
   if(user._id !== undefined) {
-      saveButton.addEventListener('click', submitPostHandler);
+      saveButton.addEventListener('click', submitPostHandler.bind(this, user));
       saveButton.addEventListener('click',function(){ 
           alert("Congrats on your submission!"); //successful submission popup
       });
@@ -62,6 +62,7 @@ function newPostSubmitButton(user) {
   return(saveButton);
 }
 
+//creates HTML element for a Save To Drafts button that executes based on status of user
 function newPostSaveButton(user){
 
   draftButton = document.createElement('button');
@@ -69,7 +70,7 @@ function newPostSaveButton(user){
   draftButton.setAttribute('id', 'btnShow2');
   draftButton.innerText = 'Save To Drafts';
   if(user._id !== undefined) {
-      draftButton.addEventListener('click', saveDraftHandler);
+      draftButton.addEventListener('click', saveDraftHandler.bind(this, user));
       draftButton.addEventListener('click',function(){ 
           alert("Saved to drafts.");
       });
@@ -83,54 +84,81 @@ function newPostSaveButton(user){
   return(draftButton);
 }
 
-function submitPostHandler() {
+//submits user post to database
+function submitPostHandler(user) {
   const newPostInput = document.getElementById('post-container');
+  let currentPrompt = '';
+
   get('/api/getprompt', {}, function(prompt){
     currentPrompt = prompt.prompt;
-  });
 
-  const currentDate = getCurrentDate();
+    const currentDate = getCurrentDate();
 
-  const input = {
-      content: newPostInput.value,
-      prompt: currentPrompt,
-      date: currentDate,
-      upvotes: 0,
-  };
+    const input = {
+        creator_id: user._id,
+        creator_name: user.name,
+        content: newPostInput.value,
+        prompt: currentPrompt,
+        date: currentDate,
+        upvotes: 0,
+    };
+
+  console.log(currentDate + "from submit post handler"); //test
 
   post('/api/post', input);
   newPostInput.value = '';
-}
-
-function saveDraftHandler() {
-  const newDraftInput = document.getElementById('post-container');
-  get('/api/getprompt', {}, function(prompt){
-    currentPrompt = prompt.prompt;
   });
 
-  const currentDate = getCurrentDate();
-
-  const input = {
-      content: newDraftInput.value,
-      prompt: currentPrompt,
-      date: currentDate,
-  };
-
-  post('/api/draft', input);
+  
 }
 
+//submits user draft to database
+function saveDraftHandler(user) {
+  const newDraftInput = document.getElementById('post-container');
+  console.log(newDraftInput.value + "<--- there should be the text");
+  let currentPrompt = '';
+
+  get('/api/getprompt', {}, function(prompt){
+    currentPrompt = prompt.prompt;
+    console.log(currentPrompt); //test draft
+
+    const currentDate = getCurrentDate();
+
+    const input = {
+        creator_id: user._id,
+        creator_name: user.name,
+        content: newDraftInput.value,
+        prompt: currentPrompt,
+        date: currentDate,
+    };    
+
+  post('/api/draft', input);
+
+  });
+
+  
+}
+
+//returns current date
 function getCurrentDate(){
-    let current = new Date();
-    let currentYearNum = current.getFullYear();
-    let currentMonthNum = current.getMonth()+1;
-    let currentDateNum = current.getDate(); 
+    const current = new Date();
+    const currentYearNum = current.getFullYear();
+    const currentMonthNum = current.getMonth()+1;
+    const currentDateNum = current.getDate(); 
+
+    const currentYearStr = currentYearNum.toString();
+    const currentMonthStr = currentMonthNum.toString();
+    const currentDateStr = currentDateNum.toString();
     //change number type to string type
-    today = currentMonthNum + '/' + currentDateNum + '/' + currentYearNum;
-    console.log(today);
+    today = currentMonthStr + '/' + currentDateStr + '/' + currentYearStr;
+    console.log(today + "from index.js");
+
     return today
 }
 
+//appends buttons and passes in user 
 function renderButtons(user) {
+    console.log("renderButtons function called");
   const newPostSubmit = document.getElementById('btnPost');
   newPostSubmit.appendChild(newPostSubmitButton(user));
   const spanCard = document.createElement('span');
@@ -139,10 +167,10 @@ function renderButtons(user) {
   newPostSubmit.appendChild(newPostSaveButton(user));
 }
 
+//appends prompt text to HTML and updates automatically using socket.io when prompt object changes
 function renderPrompt(prompt) {
     const promptDiv = document.getElementById("prompt-container");
     promptDiv.innerHTML = prompt.prompt;
-    console.log("reached initial render prompt");
 
     const socket =io();
     socket.on('prompt', function(prompt){
@@ -152,7 +180,7 @@ function renderPrompt(prompt) {
    
 }
 
-//dummyArr = [postDummy, postDummy2,postDummy3, postDummy4];
+
 
 function main() {
 console.log("index main called");
@@ -168,7 +196,10 @@ console.log("index main called");
             else {
                 console.log("user undefined");
             }   
+            //append dynamic navbar
             renderNavBar(user, userSubmitStatus);
+
+            //append buttons 
             renderButtons(user);
         });
     
