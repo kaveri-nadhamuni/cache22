@@ -4,7 +4,8 @@ const UserModelSchema = new mongoose.Schema({
     name: String,
     bio: String,
     stories: String,
-    upvotes: String
+    upvotes: String,
+    submitStatus: Boolean,
 
 });
 

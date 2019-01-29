@@ -47,14 +47,15 @@ function newPostSubmitButton(user) {
   saveButton.setAttribute('id', 'btnShow1');
   saveButton.innerText = 'Submit';
   if(user._id !== undefined) {
-      saveButton.addEventListener('click', submitPostHandler.bind(this, user));
-      saveButton.addEventListener('click',function(){ 
-          alert("Congrats on your submission!"); //successful submission popup
-      });
-      userSubmit = true;
+    saveButton.addEventListener('click', function() {
+        submitPostHandler(user)
+    });
+    saveButton.addEventListener('click',function(){ 
+        alert("Congrats on your submission!"); //successful submission popup
+    });
   }
   else{
-      saveButton.addEventListener('click',function(){ 
+      saveButton.addEventListener('click', function(){ 
           alert("You must be logged in to submit!");
       });
       
@@ -70,7 +71,9 @@ function newPostSaveButton(user){
   draftButton.setAttribute('id', 'btnShow2');
   draftButton.innerText = 'Save To Drafts';
   if(user._id !== undefined) {
-      draftButton.addEventListener('click', saveDraftHandler.bind(this, user));
+      draftButton.addEventListener('click', function() {
+          saveDraftHandler(user)
+        });
       draftButton.addEventListener('click',function(){ 
           alert("Saved to drafts.");
       });
@@ -103,13 +106,16 @@ function submitPostHandler(user) {
         upvotes: 0,
     };
 
-  console.log(currentDate + "from submit post handler"); //test
-
   post('/api/post', input);
   newPostInput.value = '';
-  });
 
+
+  post('/api/submitStatusTrue', {'_id': user._id});
+
+  updateNavBar(user);
+  });
   
+
 }
 
 //submits user draft to database
@@ -172,7 +178,7 @@ function renderPrompt(prompt) {
     const promptDiv = document.getElementById("prompt-container");
     promptDiv.innerHTML = prompt.prompt;
 
-    const socket =io();
+    const socket = io();
     socket.on('prompt', function(prompt){
         const promptDiv = document.getElementById("prompt-container");
         promptDiv.innerHTML = prompt.prompt;
@@ -183,9 +189,6 @@ function renderPrompt(prompt) {
 
 
 function main() {
-console.log("index main called");
-
-    userSubmitStatus = false;
         //renderDOMPosts(dummyArr);
         get('/api/whoami', {}, function(user) {
             console.log(user);
@@ -197,7 +200,7 @@ console.log("index main called");
                 console.log("user undefined");
             }   
             //append dynamic navbar
-            renderNavBar(user, userSubmitStatus);
+            renderNavBar(user);
 
             //append buttons 
             renderButtons(user);

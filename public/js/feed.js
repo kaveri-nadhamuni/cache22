@@ -45,11 +45,6 @@ function postDOMObject(postJSON) {
   const x = postJSON.creator_id;
   buttonSpan.setAttribute('onclick','changePic(this)');
   upvoteSpan.appendChild(buttonSpan);
-    
-
-  const promptSpan = document.createElement('div');
-  promptSpan.innerHTML = '<b>'+'prompt'+'<b>';
-  contentSpan.appendChild(promptSpan);
 
   const storySpan = document.createElement('div');
   storySpan.innerHTML = '<br>'+postJSON.content+'<br><br>';

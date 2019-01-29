@@ -62,6 +62,41 @@ router.post('/post', connect.ensureLoggedIn(), function(req, res) {
     res.send({});
 });
 
+router.post('/submitStatusTrue', connect.ensureLoggedIn(), function(req, res){
+    User.findOne({_id: req.body._id}, function(err, user){
+        if(user){
+            user.submitStatus = true;
+            console.log(user + "<---- this is the user submit status");
+            user.save(function(err, user){
+                if(err) {
+                    console.log("unable to change status")
+                }
+            });
+        }else{
+            console.log(err);
+            console.log("error");
+        }
+    });
+    res.send({});
+});
+
+router.post('/submitStatusFalse', connect.ensureLoggedIn(), function(req, res){
+    User.findOne({_id: req.body._id}, function(err, user){
+        if(user){
+            user.submitStatus = false;
+            user.save(function(err, user){
+                if(err) {
+                    console.log("unable to change status")
+                }
+            });
+        }else{
+            console.log(err);
+            console.log("error");
+        }
+    });
+    res.send({});
+});
+
 router.get('/posts', function(req, res) {
     Post.find({}, function(err, posts) {
         res.send(posts);
@@ -108,7 +143,7 @@ router.get('/userdrafts', function(req,res){
 router.post('/upvote', connect.ensureLoggedIn(), function(req,res) {
     Post.findById(req.body._id, function(err, post){
         if(post){
-            post.upvotes += 1
+            post.upvotes += 1;
             post.save(function(err, post){
                 //const io = req.app.get('socketio');
                 //io.emit('post', post);
