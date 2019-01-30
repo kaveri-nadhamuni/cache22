@@ -189,7 +189,6 @@ function renderPrompt(prompt) {
 
 
 function main() {
-        //renderDOMPosts(dummyArr);
         get('/api/whoami', {}, function(user) {
             console.log(user);
             //test
