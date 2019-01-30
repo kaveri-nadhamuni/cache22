@@ -1,4 +1,4 @@
-const API_ENDPOINT_START = 'http://cache22.herokuapp.com';
+const API_ENDPOINT_START = 'https://cache22.herokuapp.com';
 
 // GET /api/stories fetches all stories
 // GET /api/comment fetches all comments for a story, given the story's id (passed as the 'parent' parameter)

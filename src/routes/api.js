@@ -166,7 +166,6 @@ router.post('/upvote', connect.ensureLoggedIn(), function(req,res) {
 router.post('/prompt', function(req,res){
     const newPrompt = new Prompt ({
         'prompt': req.body.prompt,
-        //'timestamp': req.body.timestamp, //may comment out
     });
 
     newPrompt.save(function(err,prompt){
