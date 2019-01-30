@@ -17,14 +17,10 @@ function postDOMObject(postJSON) {
   const creatorSpan = document.createElement('span');
   rowSpan.appendChild(creatorSpan);
 
-  const timeSpan = document.createElement('div');
-  timeSpan.className = 'date';
-  timeSpan.innerHTML = postJSON.date;
-  creatorSpan.appendChild(timeSpan);
 
   const upvoteSpan = document.createElement('div');
   upvoteSpan.className = 'col-sm-3 ';
-  upvoteSpan.innerHTML= '<br>'+ postJSON.upvotes + "  ";
+  upvoteSpan.innerHTML= '<br>'+postJSON.date+'<br>'+ postJSON.upvotes + "  ";
   creatorSpan.appendChild(upvoteSpan);
 
   const imageSpan = document.createElement('img');
