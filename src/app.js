@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const session = require('express-session');
 const socketio = require('socket.io');
+require('dotenv').config();
 
 // local dependencies
 const db = require('./db');
@@ -71,7 +72,7 @@ app.use(function(err, req, res, next) {
 });
 
 //defines what port server is listening on 
-const port = process.env.PORT || 3000;
+const port = (process.env.PORT || 3000);
 const server = http.Server(app);
 server.listen(port, function() {
   console.log('Server running on port: ' + port);

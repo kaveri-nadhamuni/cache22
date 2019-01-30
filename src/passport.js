@@ -17,7 +17,7 @@ passport.use(new GoogleStrategy({
         console.log("err");
     }
     if (!user) {
-      user = new User({
+      const user = new User({
         name: profile.displayName,
         googleid: profile.id,
         submitStatus: false
