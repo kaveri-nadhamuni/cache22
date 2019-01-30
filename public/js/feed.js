@@ -22,7 +22,6 @@ function postDOMObject(postJSON) {
   rowSpan.setAttribute('style','display:flex');
   cardBody.appendChild(rowSpan);  
 
-  
 
   const upvoteSpan = document.createElement('div');
   upvoteSpan.setAttribute('id', 'upvote id')
