@@ -41,7 +41,7 @@ function addDropDownMenuTrue(user) {
 
     const menuFeedLock = document.createElement('img');
     menuFeedLock.className = "lock-asset";
-    menuFeedLock.src = '/static/images/locked-lock-white.jpg';
+    menuFeedLock.src = '/static/images/unlocked-lock-white.png';
     menuFeedSpan.appendChild(menuFeedLock);
 
     const menuLogoutItem = document.createElement('LI');
@@ -102,7 +102,7 @@ function addDropDownMenuFalse(user) {
 
     const menuFeedLock = document.createElement('img');
     menuFeedLock.className = "lock-asset";
-    menuFeedLock.src = '/static/locked-lock-white.jpg';
+    menuFeedLock.src = '/static/images/locked-lock-white.png';
     menuFeedSpan.appendChild(menuFeedLock);
 
 
