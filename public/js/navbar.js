@@ -39,6 +39,11 @@ function addDropDownMenuTrue(user) {
     menuFeedSpan.innerHTML = "Today's Feed";
     menuFeedItem.appendChild(menuFeedSpan);
 
+    const menuFeedLock = document.createElement('img');
+    menuFeedLock.className = "lock-asset";
+    menuFeedLock.src = '/static/images/locked-lock-white.jpg';
+    menuFeedSpan.appendChild(menuFeedLock);
+
     const menuLogoutItem = document.createElement('LI');
     dropMenu.appendChild(menuLogoutItem);
 
@@ -77,10 +82,6 @@ function addDropDownMenuFalse(user) {
     dropMenu.setAttribute('style','background-color:rgb(123, 198, 233)');
     listItem.appendChild(dropMenu);
 
-    //$(".dropdown-menu").append('<li><a href="/u/profile">Profile</a></li>');
-    //$(".dropdown-menu").append('<li><a href="index.html" data-toggle="modal" data-target="#logoutModal">Logout</a></li>')
-
-
     const menuProfileItem = document.createElement('LI');
     dropMenu.appendChild(menuProfileItem);
 
@@ -94,9 +95,16 @@ function addDropDownMenuFalse(user) {
     dropMenu.appendChild(menuFeedItem);
 
     const menuFeedSpan = document.createElement('a');
-    menuFeedSpan.onclick = function(){alert("You must submit a story to view today's feed.")};
+    menuFeedSpan.onclick = function(){
+        alert("You must submit a story to view today's feed.")};
     menuFeedSpan.innerHTML = "Today's Feed";
     menuFeedItem.appendChild(menuFeedSpan);
+
+    const menuFeedLock = document.createElement('img');
+    menuFeedLock.className = "lock-asset";
+    menuFeedLock.src = '/static/locked-lock-white.jpg';
+    menuFeedSpan.appendChild(menuFeedLock);
+
 
     const menuLogoutItem = document.createElement('LI');
     dropMenu.appendChild(menuLogoutItem);
