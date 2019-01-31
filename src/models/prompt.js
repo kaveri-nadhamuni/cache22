@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const PromptModelSchema = new mongoose.Schema({
-    prompt: String, 
-    timestamp: String
-
+    prompt: String
 });
 
 module.exports = mongoose.model('PromptModel', PromptModelSchema)

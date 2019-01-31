@@ -48,7 +48,10 @@ router.post('/post', connect.ensureLoggedIn(), function(req, res) {
     const newPost = new Post({
         'creator_id': req.user._id,
         'creator_name': req.user.name,
+        'prompt': req.body.prompt,
         'content': req.body.content,
+        'upvotes': req.body.upvotes,
+        'date': req.body.date,
     });
    
     newPost.save(function(err) {
@@ -59,14 +62,49 @@ router.post('/post', connect.ensureLoggedIn(), function(req, res) {
     res.send({});
 });
 
+router.post('/submitStatusTrue', connect.ensureLoggedIn(), function(req, res){
+    User.findOne({_id: req.body._id}, function(err, user){
+        if(user){
+            user.submitStatus = true;
+            console.log(user + "<---- this is the user submit status");
+            user.save(function(err, user){
+                if(err) {
+                    console.log("unable to change status")
+                }
+            });
+        }else{
+            console.log(err);
+            console.log("error");
+        }
+    });
+    res.send({});
+});
+
+router.post('/submitStatusFalse', connect.ensureLoggedIn(), function(req, res){
+    User.findOne({_id: req.body._id}, function(err, user){
+        if(user){
+            user.submitStatus = false;
+            user.save(function(err, user){
+                if(err) {
+                    console.log("unable to change status")
+                }
+            });
+        }else{
+            console.log(err);
+            console.log("error");
+        }
+    });
+    res.send({});
+});
+
 router.get('/posts', function(req, res) {
     Post.find({}, function(err, posts) {
         res.send(posts);
     });
 });
 
-//figure out timer
-router.get('/todayposts', function(req, res) {
+
+router.get('/todaysposts', function(req, res) {
     Post.find({date: req.query.date}, function(err, todaysposts) {
         res.send(todaysposts);
     });
@@ -81,9 +119,11 @@ router.get('/userposts', function(req,res) {
 //work in progress
 router.post('/draft', connect.ensureLoggedIn(), function(req, res) {
     const newDraft = new Draft({
-        'creator_id': /*"anonid"*/req.user._id,
-        'creator_name': /*"anonymous"*/ req.user.name,
+        'creator_id': req.user._id,
+        'creator_name': req.user.name,
         'content': req.body.content,
+        'prompt': req.body.prompt,
+        'date': req.body.date,
     });
    
     newDraft.save(function(err,story) {
@@ -103,8 +143,10 @@ router.get('/userdrafts', function(req,res){
 router.post('/upvote', connect.ensureLoggedIn(), function(req,res) {
     Post.findById(req.body._id, function(err, post){
         if(post){
-            post.upvotes += 1
-            post.save(function(err){
+            post.upvotes += 1;
+            post.save(function(err, post){
+                //const io = req.app.get('socketio');
+                //io.emit('post', post);
                 if(err) {
                     console.log("unable to update vote")
                 }
@@ -117,10 +159,13 @@ router.post('/upvote', connect.ensureLoggedIn(), function(req,res) {
 
 })
 
+/*router.get('/getupvote', function(req, res) {
+    Post.findById(req.body._id, function(err,))
+})*/
+
 router.post('/prompt', function(req,res){
     const newPrompt = new Prompt ({
         'prompt': req.body.prompt,
-        //'timestamp': req.body.timestamp, //may comment out
     });
 
     newPrompt.save(function(err,prompt){

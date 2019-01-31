@@ -5,25 +5,27 @@ const User = require('./models/user');
 
 // set up passport configs
 passport.use(new GoogleStrategy({
-    clientID: '802188459296-h1gska49bie30n68mti8d07tosc5rc7d.apps.googleusercontent.com',
-    clientSecret: 'h7n4UrnZk18vLKjBH6uzPn0u',
-  callbackURL: '/auth/google/callback'
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: '/auth/google/callback'
 }, function (accessToken, refreshToken, profile, done) {
   User.findOne({
     'googleid': profile.id
   }, function (err, user) {
-    if (err) {
-        return done(err);
-        console.log("err");
-    }
+    if (err) return done(err);
+    
     if (!user) {
-      user = new User({
+      const user = new User({
+        googleid: profile.id,
         name: profile.displayName,
-        googleid: profile.id
+        submitStatus: false
       });
 
       user.save(function (err) {
-        if (err) console.log(err);
+        if (err) {
+          console.log(err);
+          console.log("user save error");
+        }
 
         return done(err, user);
         console.log("new user made");
