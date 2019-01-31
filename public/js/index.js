@@ -41,23 +41,29 @@ function postHallOfFameDOMObject(postJSON) {
 }
 
 //creates HTML element for a Submit button that executes based on status of user
-function newPostSubmitButton(user) {
-  saveButton = document.createElement('button');
-  saveButton.setAttribute('style','border-radius:10px; border-width:0px; background-color:plum;padding: 15px 32px;');
-  saveButton.setAttribute('id', 'btnShow1');
-  saveButton.innerText = 'Submit';
+function newPostSubmitButton(user) {  
   if(user._id !== undefined) {
+    saveButton = document.createElement('button');
+    saveButton.setAttribute('style','border-radius:10px; border-width:0px; background-color:plum;padding: 15px 32px;');
+    saveButton.setAttribute('id', 'btnShow1');
+    saveButton.innerText = 'Submit';
     saveButton.addEventListener('click', function() {
         submitPostHandler(user)
     });
-    saveButton.addEventListener('click',function(){ 
+    saveButton.addEventListener('click', function(){
         alert("Congrats on your submission!"); //successful submission popup
     });
+    localUserSubmitStatus = true;
+     //make sure it occurs synchronously,
   }
   else{
-      saveButton.addEventListener('click', function(){ 
-          alert("You must be logged in to submit!");
-      });
+    saveButton = document.createElement('button');
+    saveButton.setAttribute('style','border-radius:10px; border-width:0px; background-color:plum;padding: 15px 32px;');
+    saveButton.setAttribute('id', 'btnShow1');
+    saveButton.innerText = 'Submit';
+    saveButton.addEventListener('click', function(){ 
+        alert("You must be logged in to submit!");
+    });
       
   }
   return(saveButton);
@@ -77,7 +83,6 @@ function newPostSaveButton(user){
       draftButton.addEventListener('click',function(){ 
           alert("Saved to drafts.");
       });
-      userSubmit = false;
   }
   else{
       draftButton.addEventListener('click',function(){ 
@@ -109,10 +114,16 @@ function submitPostHandler(user) {
   post('/api/post', input);
   newPostInput.value = '';
 
+    const submit = {
+        user_id: user._id,
+        date: currentDate,
+    }
 
-  post('/api/submitStatusTrue', {'_id': user._id});
+    post('/api/usersubmitstat', submit);
+  //post('/api/submitStatusTrue', {'_id': user._id});
 
   updateNavBar(user);
+
   });
   
 
@@ -189,26 +200,27 @@ function renderPrompt(prompt) {
 
 
 function main() {
-        get('/api/whoami', {}, function(user) {
-            console.log(user);
-            //test
-            if (user._id !== undefined){
-                console.log("user defined");
-            }
-            else {
-                console.log("user undefined");
-            }   
-            //append dynamic navbar
-            renderNavBar(user);
-
-            //append buttons 
-            renderButtons(user);
-        });
     
-        get('/api/getprompt', {}, function(prompt){
-            renderPrompt(prompt);
-        });
+    get('/api/whoami', {}, function(user) {
+        console.log(user);
+        //test
+        if (user._id !== undefined){
+            console.log("user defined");
+        }
+        else {
+            console.log("user undefined");
+        }   
+        //append dynamic navbar
+        renderNavBar(user);
+
+        //append buttons 
+        renderButtons(user);
+    });
+
+    get('/api/getprompt', {}, function(prompt){
+        renderPrompt(prompt);
+    });
       
-    }
+}
     
 main();

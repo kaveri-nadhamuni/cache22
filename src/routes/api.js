@@ -5,10 +5,26 @@ const Post = require('../models/post');
 const User = require('../models/user');
 const Draft = require('../models/draft');
 const Prompt = require('../models/prompt');
+const SubmitStat = require('../models/submitstat');
 
 const router = express.Router();
 
 router.get('/whoami', function(req,res) {
+    console.log("this is the user");
+    console.log(req.user);
+    if(req.isAuthenticated()){
+        res.send(req.user);
+        //test
+        console.log("user authenticated");
+    }
+    else{
+        res.send({});
+        //test
+        console.log("no user authenticated");
+    }
+});
+
+router.get('/whoamiprofile', function(req,res) {
     console.log("this is the user");
     console.log(req.user);
     if(req.isAuthenticated()){
@@ -62,11 +78,31 @@ router.post('/post', connect.ensureLoggedIn(), function(req, res) {
     res.send({});
 });
 
-router.post('/submitStatusTrue', connect.ensureLoggedIn(), function(req, res){
+
+
+router.post('/usersubmitstat', function(req, res) {
+    const newSubmitState = new SubmitStat({
+        'user_id': req.user._id,
+        'date': req.body.date,
+    });
+   
+    newSubmitState.save(function(err) {
+        console.log("user submit stat saved");
+        if (err) console.log(err);
+    });
+   
+    res.send({});
+});
+
+router.get('/getsubmitstat', function(req,res){
+    SubmitStat.find({date: req.query.date}, function(err, todayssubs) {
+        res.send(todayssubs);
+    });
+});
+/*router.post('/submitStatusTrue', connect.ensureLoggedIn(), function(req, res){
     User.findOne({_id: req.body._id}, function(err, user){
         if(user){
             user.submitStatus = true;
-            console.log(user + "<---- this is the user submit status");
             user.save(function(err, user){
                 if(err) {
                     console.log("unable to change status")
@@ -95,7 +131,7 @@ router.post('/submitStatusFalse', connect.ensureLoggedIn(), function(req, res){
         }
     });
     res.send({});
-});
+});*/
 
 router.get('/posts', function(req, res) {
     Post.find({}, function(err, posts) {
@@ -159,9 +195,6 @@ router.post('/upvote', connect.ensureLoggedIn(), function(req,res) {
 
 })
 
-/*router.get('/getupvote', function(req, res) {
-    Post.findById(req.body._id, function(err,))
-})*/
 
 router.post('/prompt', function(req,res){
     const newPrompt = new Prompt ({

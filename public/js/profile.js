@@ -97,24 +97,6 @@ function renderUserData(user) {
   const nameContainer = document.getElementById('name-container');
   nameContainer.innerHTML = user.name;
   
-
-  // rendering profile image
-  /*const profileImage = document.getElementById('profile-image');
-  profileImage.style = 'background-image:url(https://i.pinimg.com/736x/98/e0/7d/98e07decc7c1ca58236995de3567e46a--cat-shirts-kitties-cutest.jpg)';*/
-
-  // rendering total upvotes
-  /*const latestPostCard = document.getElementById('latest-post-card');
-
-  const creatorSpan = document.createElement('a');
-  creatorSpan.className = 'story-creator card-title';
-  creatorSpan.innerHTML = user.name;
-  creatorSpan.setAttribute('href', '/u/profile?'+user._id);
-  latestPostCard.appendChild(creatorSpan);
-
-  const latestPost = document.createElement('p');
-  latestPost.className = 'story-content card-text';
-  latestPost.innerHTML = user.last_post;
-  latestPostCard.appendChild(latestPost);*/ //copied and pasted from catbook
 }
 
 function renderUserPosts(postsArr) {
@@ -128,6 +110,7 @@ function renderUserPosts(postsArr) {
 }
 
 function renderUserDrafts(draftsArr) {
+  console.log("renderUserDrafts");
   const draftsDiv = document.getElementById('user-draft-container');
   for (let i = 0; i < draftsArr.length; i++) {
     const currentPost = draftsArr[i];
@@ -137,17 +120,17 @@ function renderUserDrafts(draftsArr) {
 }
 //call get function that specifies all posts with creator_id that matches user._id
 
-function main() {
+function renderProfile() {
   const profileId = window.location.search.substring(1);
   get('/api/user', {'_id': profileId}, function(profileUser) {
     renderUserData(profileUser);
   });
 
-  get('/api/whoami', {}, function(user) {
-    renderNavbar(user);
+  get('/api/whoamiprofile', {}, function(user) {
+    console.log("profile navbar loaded");
+    renderNavBar(user);
   });
 
-  console.log("profileId from profile.js:" + profileId); //debugging test
 
   get('/api/userposts', {'creator_id': profileId}, function(userPosts){
     renderUserPosts(userPosts);
@@ -159,50 +142,4 @@ function main() {
 
 }
 
-
-  /*const dummyUser = {
-    _id: 'anonid',
-    name: 'Anonymous-test',
-    bio: 'Anon was here',
-  };
-
-  const postDummy = {
-    creator_id: "12345667",
-    creator_name: "anonnnymous",
-    content: "this is my story:The following list of cat breeds includes only domestic cat breeds and domestic × wild hybrids. The list includes established breeds recognized by various cat registries, new and experimental breeds, landraces being established as standardized breeds, distinct domestic populations not being actively developed, and lapsed (extinct) Inconsistency in breed classification and naming among registries means that an individual animal may be considered different breeds by different registries (though not necessarily eligible for registry in them all, depending on its exact ancestry). ",
-
-    upvotes: 3,
-    timestamp: "0:0:0"
-  };
-
-  const postDummy2 = {
-    creator_id: "13434533",
-    creator_name: "anonnnymous2",
-    content: "this is my story2",
-    upvotes: 3,
-    timestamp: "0:0:0"
-  };
-
-  const draftDummy = {
-    creator_id: "12233445",
-    creator_name: "anonymous1",
-    content:"this is my story:The following list of cat breeds includes only domestic cat breeds and domestic × wild hybrids. The list includes established breeds recognized by various cat registries, new and experimental breeds, landraces being established as standardized breeds, distinct domestic populations not being actively developed, and lapsed (extinct) Inconsistency in breed classification and naming among registries means that an individual animal may be considered different breeds by different registries (though not necessarily eligible for registry in them all, depending on its exact ancestry). ",
-    timestamp: "1:0:0"
-  };
-
-  const draftDummy2 = {
-    creator_id: "12233445",
-    creator_name: "anonymous2",
-    content: "This is my draft",
-    timestamp: "1:0:0"
-  };*/
-
-  /*let dummyPostArr = [postDummy, postDummy2];
-  let dummyDraftArr = [draftDummy, draftDummy2]; 
-  renderUserData(dummyUser);
-  renderNavBar(dummyUser);
-  renderUserPosts(dummyPostArr);
-  renderUserDrafts(dummyDraftArr);*/
-
-
-main();
+renderProfile();

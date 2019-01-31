@@ -41,7 +41,7 @@ function addDropDownMenuTrue(user) {
 
     const menuFeedLock = document.createElement('img');
     menuFeedLock.className = "lock-asset";
-    menuFeedLock.src = '/static/images/unlocked-lock-white.png';
+    menuFeedLock.src = '/static/images/unlocked.png'
     menuFeedSpan.appendChild(menuFeedLock);
 
     const menuLogoutItem = document.createElement('LI');
@@ -102,7 +102,7 @@ function addDropDownMenuFalse(user) {
 
     const menuFeedLock = document.createElement('img');
     menuFeedLock.className = "lock-asset";
-    menuFeedLock.src = '/static/images/locked-lock-white.png';
+    menuFeedLock.src = '/static/images/locked.png';
     menuFeedSpan.appendChild(menuFeedLock);
 
 
@@ -110,14 +110,9 @@ function addDropDownMenuFalse(user) {
     dropMenu.appendChild(menuLogoutItem);
 
     const menuLogoutSpan = document.createElement('a');
-    //menuLogoutSpan.href = "#logoutModal";
     menuLogoutSpan.href = '/logout';
     menuLogoutSpan.className = "logout-tab";
-    //$('.menuLogoutSpan').attr("data-toggle","modal");
-    //$('.menuLogoutSpan').attr("data-target","#logoutModal");
-    //menuLogoutSpan.setAttribute("data-toggle","modal");
-    //menuLogoutSpan.setAttribute("data-target","#logoutModal");
-    //$("#logoutModal").modal()
+
     menuLogoutSpan.innerHTML = 'Logout';
     menuLogoutItem.appendChild(menuLogoutSpan);
 
@@ -136,25 +131,42 @@ function renderLoginButton() {
     return listItem;
 }
 
-function renderNavBar(user) { //will need to define userSubmit as a boolean elsewhere
-    const navbarDiv = document.getElementById("innerNavBar")
-    
-    if (user._id !== undefined && user.submitStatus === true) {
-        navbarDiv.appendChild(addDropDownMenuTrue(user));
-        //code for adding profile to navBar
-        console.log("user id defined & userSubmit true");
+function renderNavBar(user) { 
+    console.log("render nav bar called");
+    const navbarDiv = document.getElementById("innerNavBar");
+    const currentDate = getCurrentDate();
+
+    let currentSubmitStat = false;
+    if(user._id !== undefined){
+        get('/api/getsubmitstat', {'date': currentDate}, function(submitusers){
+            console.log("after get submit stat and before for loop");
+            for (let i=0; i<submitusers.length; i++) {
+                if (submitusers[i].user_id === user._id){
+                    console.log("matching user id found");
+                    navbarDiv.appendChild(addDropDownMenuTrue(user));
+                    currentSubmitStat = true;
+                    console.log("user id defined & userSubmit true");
+                    break;
+                }
+            }
+            if(currentSubmitStat === false){
+                navbarDiv.appendChild(addDropDownMenuFalse(user));
+                console.log("usersubmit false");
+            }
+        });
         
-    }
-    else if (user._id !== undefined){
-        navbarDiv.appendChild(addDropDownMenuFalse(user));
-    }
+    }          
     else {
         navbarDiv.appendChild(renderLoginButton());
     }
 }
+    
+    
 
-function updateNavBar() {
+
+function updateNavBar(user) {
     const navbarDiv = document.getElementById("innerNavBar");
-    navbarDiv.replaceChild(addDropDownMenuTrue(user),navbarDiv.children[4]);
+    navbarDiv.replaceChild(addDropDownMenuTrue(user),navbarDiv.children[3]);
+    console.log("update navbar run");
 }
 

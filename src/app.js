@@ -52,6 +52,7 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
+
 // set routes
 app.use('/', views);
 app.use('/api', api );
