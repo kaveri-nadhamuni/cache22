@@ -188,6 +188,7 @@ function renderButtons(user) {
 function renderPrompt(prompt) {
     const promptDiv = document.getElementById("prompt-container");
     promptDiv.innerHTML = prompt.prompt;
+    console.log("reached initial prompt generate")
 
     const socket = io();
     socket.on('prompt', function(prompt){
